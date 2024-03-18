@@ -71,5 +71,30 @@ final class Root_AppTests: XCTestCase {
             $0.tabBarState = .init()
         }
     }
+    
+    func testOnLogout() async {
+        let store = TestStore(
+          initialState: RootReducer.State(
+            tabBarState: .init()
+          )
+        ) {
+          RootReducer()
+        }
+                
+        await store.send(.tabBarAction(.presented(.external(.onLogout))))
+        
+        await store.finish()
+                
+        await store.receive(.tabBarAction(.dismiss)) {
+            $0.tabBarState = nil
+        }
+        
+        await store.receive(.presentLoginAlert) {
+            $0.isLoginAlertPresented = true
+        }
+        
+        await store.skipReceivedActions()
+        await store.finish()
+    }
 
 }

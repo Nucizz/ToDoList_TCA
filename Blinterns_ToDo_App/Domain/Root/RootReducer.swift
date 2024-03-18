@@ -35,8 +35,19 @@ extension RootReducer {
                 case .dismiss:
                     state.tabBarState = nil
                     return .none
-                case .presented:
-                    return .none
+                case .presented(let action):
+                    switch action {
+                    case .external(let action):
+                        switch action {
+                        case .onLogout:
+                            return .run { send in
+                                await send(.tabBarAction(.dismiss))
+                                await send(.presentLoginAlert)
+                            }
+                        }
+                    default:
+                        return .none
+                    }
                 }
             case .onLoginButtonTapped:
                 userDefaultRepository.setUsername(state.nameField)

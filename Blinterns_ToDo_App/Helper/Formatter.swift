@@ -9,14 +9,14 @@ import Foundation
 
 struct Formatter {
     
-    static func formatDateTime(date: Date) -> String {
+    func formatDateTime(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .short
         return dateFormatter.string(from: date)
     }
     
-    static func formatCurrency(value: Double) -> String {
+    func formatCurrency(value: Double) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.currencySymbol = "Rp"
@@ -30,7 +30,7 @@ struct Formatter {
         }
     }
     
-    static func formatTemperature(temperature: Double) -> String {
+    func formatTemperature(temperature: Double) -> String {
         return String(format: "%.1f°C", temperature)
     }
     

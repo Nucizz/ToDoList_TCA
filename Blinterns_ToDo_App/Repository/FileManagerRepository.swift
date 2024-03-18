@@ -7,65 +7,79 @@
 
 import Foundation
 import UIKit
+import Dependencies
 
+struct FileManagerRepository: DependencyKey {
+    
+    var saveImage: (UIImage) throws -> String
+    var loadImage: (String) throws -> UIImage
+    var deleteImage: (String) throws -> Void
+    
+}
 
-struct FileManagerRepository {
-    
-    func saveImage(image: UIImage) -> String? {
-        guard let data = image.jpegData(compressionQuality: 0.6) else {
-            return nil
-        }
-        
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
-            return nil
-        }
-        
-        do {
-            let fileName = String(Date.now.timeIntervalSince1970)
-            try data.write(to: directory.appendingPathComponent(fileName)!)
-            return fileName
-        } catch {
-            return nil
-        }
-    }
-    
-    func loadImage(fileName: String) -> UIImage? {
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {
-            return nil
-        }
-        
-        let fileURL = directory.appendingPathComponent(fileName)
-        
-        guard FileManager.default.fileExists(atPath: fileURL.path) else {
-            return nil
-        }
-        
-        do {
-            let imageData = try Data(contentsOf: fileURL)
-            return UIImage(data: imageData)
-        } catch {
-            return nil
-        }
-    }
-    
-    func deleteImage(fileName: String) -> Bool {
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {
-            return false
-        }
-        
-        let fileURL = directory.appendingPathComponent(fileName)
-        
-        guard FileManager.default.fileExists(atPath: fileURL.path) else {
-            return false
-        }
-        
-        do {
-            try FileManager.default.removeItem(at: fileURL)
-            return true
-        } catch {
-            return false
-        }
-    }
+extension FileManagerRepository{
+    static var liveValue: FileManagerRepository {
+        return Self(
+            saveImage: { image in
+                guard let data = image.jpegData(compressionQuality: 0.6) else {
+                    throw CsError.FileManagerError.imageCompressionFailure
+                }
+                
+                guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+                    throw CsError.FileManagerError.invalidApplicationURL
+                }
+                
+                do {
+                    let fileName = String(Date.now.timeIntervalSince1970)
+                    try data.write(to: directory.appendingPathComponent(fileName)!)
+                    return fileName
+                } catch {
+                    throw error
+                }
 
-    
+            },
+            loadImage: { fileName in
+                guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {
+                    throw CsError.FileManagerError.invalidApplicationURL
+                }
+                
+                let fileURL = directory.appendingPathComponent(fileName)
+                
+                guard FileManager.default.fileExists(atPath: fileURL.path) else {
+                    throw CsError.FileManagerError.imageNotFound
+                }
+                
+                do {
+                    let imageData = try Data(contentsOf: fileURL)
+                    return UIImage(data: imageData)!
+                } catch {
+                    throw error
+                }
+            },
+            deleteImage: { fileName in
+                guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {
+                    throw CsError.FileManagerError.invalidApplicationURL
+                }
+                
+                let fileURL = directory.appendingPathComponent(fileName)
+                
+                guard FileManager.default.fileExists(atPath: fileURL.path) else {
+                    throw CsError.FileManagerError.imageNotFound
+                }
+                
+                do {
+                    try FileManager.default.removeItem(at: fileURL)
+                } catch {
+                    throw error
+                }
+            }
+        )
+    }
+}
+
+extension DependencyValues {
+    var fileManagerRepository: FileManagerRepository {
+        get { self[FileManagerRepository.self] }
+        set { self[FileManagerRepository.self] = newValue }
+    }
 }

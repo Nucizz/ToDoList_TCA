@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		122E65C72BA2D5FE00D74E46 /* Dashboard_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E65C62BA2D5FE00D74E46 /* Dashboard_AppTests.swift */; };
+		122E65C92BA2FB4400D74E46 /* ToDoList_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E65C82BA2FB4400D74E46 /* ToDoList_AppTests.swift */; };
+		122E65CF2BA420AE00D74E46 /* ToDoForm_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122E65CE2BA420AD00D74E46 /* ToDoForm_AppTests.swift */; };
+		1242FE782BA7D67500970129 /* ToDoFormChildAlert_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242FE772BA7D67500970129 /* ToDoFormChildAlert_AppTests.swift */; };
+		1242FE7B2BA7E3F600970129 /* ProductForm_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242FE7A2BA7E3F600970129 /* ProductForm_AppTests.swift */; };
+		1242FE7D2BA7F54100970129 /* DestinationForm_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242FE7C2BA7F54100970129 /* DestinationForm_AppTests.swift */; };
+		1242FE7F2BA8232B00970129 /* SubjectForm_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242FE7E2BA8232B00970129 /* SubjectForm_AppTests.swift */; };
+		1242FE852BA8270200970129 /* ToDoDetail_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242FE842BA8270200970129 /* ToDoDetail_AppTests.swift */; };
 		128808A42B9184CE0010B793 /* Blinterns_ToDo_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128808A32B9184CE0010B793 /* Blinterns_ToDo_App.swift */; };
 		128808A82B9184CF0010B793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 128808A72B9184CF0010B793 /* Assets.xcassets */; };
 		128808AB2B9184CF0010B793 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 128808AA2B9184CF0010B793 /* Preview Assets.xcassets */; };
-		128808B52B9184CF0010B793 /* Blinterns_ToDo_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128808B42B9184CF0010B793 /* Blinterns_ToDo_AppTests.swift */; };
-		128808BF2B9184CF0010B793 /* Blinterns_ToDo_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128808BE2B9184CF0010B793 /* Blinterns_ToDo_AppUITests.swift */; };
-		128808C12B9184CF0010B793 /* Blinterns_ToDo_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128808C02B9184CF0010B793 /* Blinterns_ToDo_AppUITestsLaunchTests.swift */; };
 		128808CF2B9185060010B793 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 128808CE2B9185060010B793 /* ComposableArchitecture */; };
 		128808D42B9185670010B793 /* RootReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128808D32B9185670010B793 /* RootReducer.swift */; };
 		128808D62B9185760010B793 /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128808D52B9185760010B793 /* RootStore.swift */; };
@@ -79,7 +84,6 @@
 		128809882B99D85E0010B793 /* LearningToDoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809872B99D85E0010B793 /* LearningToDoDetailView.swift */; };
 		128809932B99FC6B0010B793 /* OverlayVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809922B99FC6B0010B793 /* OverlayVStack.swift */; };
 		1288099E2B9AD1AA0010B793 /* CoreDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1288099C2B9AD1AA0010B793 /* CoreDatabase.xcdatamodeld */; };
-		128809A02B9AD20F0010B793 /* CoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1288099F2B9AD20F0010B793 /* CoreDataRepository.swift */; };
 		128809A22B9AD8710010B793 /* CsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809A12B9AD8710010B793 /* CsError.swift */; };
 		128809A42B9AFFAF0010B793 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809A32B9AFFAF0010B793 /* DashboardView.swift */; };
 		128809A62B9AFFBF0010B793 /* DashboardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809A52B9AFFBF0010B793 /* DashboardStore.swift */; };
@@ -104,25 +108,23 @@
 			remoteGlobalIDString = 1288089F2B9184CE0010B793;
 			remoteInfo = Blinterns_ToDo_App;
 		};
-		128808BB2B9184CF0010B793 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 128808982B9184CE0010B793 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1288089F2B9184CE0010B793;
-			remoteInfo = Blinterns_ToDo_App;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		122E65C42BA2D45E00D74E46 /* Blinterns_ToDo_AppTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = Blinterns_ToDo_AppTests.xctestplan; path = Blinterns_ToDo_AppTests/Blinterns_ToDo_AppTests.xctestplan; sourceTree = SOURCE_ROOT; };
+		122E65C62BA2D5FE00D74E46 /* Dashboard_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard_AppTests.swift; sourceTree = "<group>"; };
+		122E65C82BA2FB4400D74E46 /* ToDoList_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoList_AppTests.swift; sourceTree = "<group>"; };
+		122E65CE2BA420AD00D74E46 /* ToDoForm_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoForm_AppTests.swift; sourceTree = "<group>"; };
+		1242FE772BA7D67500970129 /* ToDoFormChildAlert_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoFormChildAlert_AppTests.swift; sourceTree = "<group>"; };
+		1242FE7A2BA7E3F600970129 /* ProductForm_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductForm_AppTests.swift; sourceTree = "<group>"; };
+		1242FE7C2BA7F54100970129 /* DestinationForm_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationForm_AppTests.swift; sourceTree = "<group>"; };
+		1242FE7E2BA8232B00970129 /* SubjectForm_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectForm_AppTests.swift; sourceTree = "<group>"; };
+		1242FE842BA8270200970129 /* ToDoDetail_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDetail_AppTests.swift; sourceTree = "<group>"; };
 		128808A02B9184CE0010B793 /* Blinterns_ToDo_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blinterns_ToDo_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		128808A32B9184CE0010B793 /* Blinterns_ToDo_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blinterns_ToDo_App.swift; sourceTree = "<group>"; };
 		128808A72B9184CF0010B793 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		128808AA2B9184CF0010B793 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		128808B02B9184CF0010B793 /* Blinterns_ToDo_AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Blinterns_ToDo_AppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		128808B42B9184CF0010B793 /* Blinterns_ToDo_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blinterns_ToDo_AppTests.swift; sourceTree = "<group>"; };
-		128808BA2B9184CF0010B793 /* Blinterns_ToDo_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Blinterns_ToDo_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		128808BE2B9184CF0010B793 /* Blinterns_ToDo_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blinterns_ToDo_AppUITests.swift; sourceTree = "<group>"; };
-		128808C02B9184CF0010B793 /* Blinterns_ToDo_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blinterns_ToDo_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		128808D32B9185670010B793 /* RootReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootReducer.swift; sourceTree = "<group>"; };
 		128808D52B9185760010B793 /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
 		128808D72B91858A0010B793 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -189,7 +191,6 @@
 		128809872B99D85E0010B793 /* LearningToDoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningToDoDetailView.swift; sourceTree = "<group>"; };
 		128809922B99FC6B0010B793 /* OverlayVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayVStack.swift; sourceTree = "<group>"; };
 		1288099D2B9AD1AA0010B793 /* CoreDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDatabase.xcdatamodel; sourceTree = "<group>"; };
-		1288099F2B9AD20F0010B793 /* CoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRepository.swift; sourceTree = "<group>"; };
 		128809A12B9AD8710010B793 /* CsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CsError.swift; sourceTree = "<group>"; };
 		128809A32B9AFFAF0010B793 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		128809A52B9AFFBF0010B793 /* DashboardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStore.swift; sourceTree = "<group>"; };
@@ -222,22 +223,78 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		128808B72B9184CF0010B793 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		122E65C52BA2D5C600D74E46 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				122E65CB2BA4118700D74E46 /* Domain */,
+				12D5068F2BA1AC8700D01C79 /* TabBar_AppTests.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		122E65CA2BA4117600D74E46 /* ToDoList */ = {
+			isa = PBXGroup;
+			children = (
+				122E65C82BA2FB4400D74E46 /* ToDoList_AppTests.swift */,
+				122E65CD2BA411B600D74E46 /* Domain */,
+			);
+			path = ToDoList;
+			sourceTree = "<group>";
+		};
+		122E65CB2BA4118700D74E46 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				122E65C62BA2D5FE00D74E46 /* Dashboard_AppTests.swift */,
+				122E65CA2BA4117600D74E46 /* ToDoList */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		122E65CC2BA4119B00D74E46 /* ToDoForm */ = {
+			isa = PBXGroup;
+			children = (
+				1242FE792BA7E3BE00970129 /* Domain */,
+				122E65CE2BA420AD00D74E46 /* ToDoForm_AppTests.swift */,
+				1242FE772BA7D67500970129 /* ToDoFormChildAlert_AppTests.swift */,
+			);
+			path = ToDoForm;
+			sourceTree = "<group>";
+		};
+		122E65CD2BA411B600D74E46 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				1242FE832BA826F100970129 /* ToDoDetail */,
+				122E65CC2BA4119B00D74E46 /* ToDoForm */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		1242FE792BA7E3BE00970129 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				1242FE7A2BA7E3F600970129 /* ProductForm_AppTests.swift */,
+				1242FE7C2BA7F54100970129 /* DestinationForm_AppTests.swift */,
+				1242FE7E2BA8232B00970129 /* SubjectForm_AppTests.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		1242FE832BA826F100970129 /* ToDoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1242FE842BA8270200970129 /* ToDoDetail_AppTests.swift */,
+			);
+			path = ToDoDetail;
+			sourceTree = "<group>";
+		};
 		128808972B9184CE0010B793 = {
 			isa = PBXGroup;
 			children = (
 				128808A22B9184CE0010B793 /* Blinterns_ToDo_App */,
 				128808B32B9184CF0010B793 /* Blinterns_ToDo_AppTests */,
-				128808BD2B9184CF0010B793 /* Blinterns_ToDo_AppUITests */,
 				128808A12B9184CE0010B793 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -247,7 +304,6 @@
 			children = (
 				128808A02B9184CE0010B793 /* Blinterns_ToDo_App.app */,
 				128808B02B9184CF0010B793 /* Blinterns_ToDo_AppTests.xctest */,
-				128808BA2B9184CF0010B793 /* Blinterns_ToDo_AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -278,19 +334,10 @@
 		128808B32B9184CF0010B793 /* Blinterns_ToDo_AppTests */ = {
 			isa = PBXGroup;
 			children = (
+				122E65C42BA2D45E00D74E46 /* Blinterns_ToDo_AppTests.xctestplan */,
 				12D5068A2BA18A4A00D01C79 /* Domain */,
-				128808B42B9184CF0010B793 /* Blinterns_ToDo_AppTests.swift */,
 			);
 			path = Blinterns_ToDo_AppTests;
-			sourceTree = "<group>";
-		};
-		128808BD2B9184CF0010B793 /* Blinterns_ToDo_AppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				128808BE2B9184CF0010B793 /* Blinterns_ToDo_AppUITests.swift */,
-				128808C02B9184CF0010B793 /* Blinterns_ToDo_AppUITestsLaunchTests.swift */,
-			);
-			path = Blinterns_ToDo_AppUITests;
 			sourceTree = "<group>";
 		};
 		128808D02B9185260010B793 /* Model */ = {
@@ -308,7 +355,7 @@
 		128808D12B9185370010B793 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				128808DC2B91A6740010B793 /* TabBarStore */,
+				128808DC2B91A6740010B793 /* TabBar */,
 				128808D22B91853C0010B793 /* Root */,
 			);
 			path = Domain;
@@ -324,7 +371,7 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
-		128808DC2B91A6740010B793 /* TabBarStore */ = {
+		128808DC2B91A6740010B793 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
 				12D506872BA02BD600D01C79 /* Helper */,
@@ -333,7 +380,7 @@
 				128808DF2B91AA3B0010B793 /* TabBarReducer.swift */,
 				128808E12B91AE0D0010B793 /* TabBarView.swift */,
 			);
-			path = TabBarStore;
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		128808E32B91AE1A0010B793 /* Domain */ = {
@@ -446,10 +493,9 @@
 				12D506842B9CE59B00D01C79 /* Model */,
 				128809AE2B9B79130010B793 /* WeatherRepository.swift */,
 				1288091C2B95A7A50010B793 /* FileManagerRepository.swift */,
-				1288099F2B9AD20F0010B793 /* CoreDataRepository.swift */,
-				1288099C2B9AD1AA0010B793 /* CoreDatabase.xcdatamodeld */,
 				12D5068D2BA194C100D01C79 /* UserDefaultRepository.swift */,
 				12D506912BA2925700D01C79 /* ToDoRepository.swift */,
+				1288099C2B9AD1AA0010B793 /* CoreDatabase.xcdatamodeld */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -674,8 +720,8 @@
 		12D5068A2BA18A4A00D01C79 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				122E65C52BA2D5C600D74E46 /* TabBar */,
 				12D5068B2BA18B1900D01C79 /* Root_AppTests.swift */,
-				12D5068F2BA1AC8700D01C79 /* TabBar_AppTests.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -721,24 +767,6 @@
 			productReference = 128808B02B9184CF0010B793 /* Blinterns_ToDo_AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		128808B92B9184CF0010B793 /* Blinterns_ToDo_AppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 128808CA2B9184CF0010B793 /* Build configuration list for PBXNativeTarget "Blinterns_ToDo_AppUITests" */;
-			buildPhases = (
-				128808B62B9184CF0010B793 /* Sources */,
-				128808B72B9184CF0010B793 /* Frameworks */,
-				128808B82B9184CF0010B793 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				128808BC2B9184CF0010B793 /* PBXTargetDependency */,
-			);
-			name = Blinterns_ToDo_AppUITests;
-			productName = Blinterns_ToDo_AppUITests;
-			productReference = 128808BA2B9184CF0010B793 /* Blinterns_ToDo_AppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -753,10 +781,6 @@
 						CreatedOnToolsVersion = 15.2;
 					};
 					128808AF2B9184CF0010B793 = {
-						CreatedOnToolsVersion = 15.2;
-						TestTargetID = 1288089F2B9184CE0010B793;
-					};
-					128808B92B9184CF0010B793 = {
 						CreatedOnToolsVersion = 15.2;
 						TestTargetID = 1288089F2B9184CE0010B793;
 					};
@@ -780,7 +804,6 @@
 			targets = (
 				1288089F2B9184CE0010B793 /* Blinterns_ToDo_App */,
 				128808AF2B9184CF0010B793 /* Blinterns_ToDo_AppTests */,
-				128808B92B9184CF0010B793 /* Blinterns_ToDo_AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -796,13 +819,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		128808AE2B9184CF0010B793 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		128808B82B9184CF0010B793 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -883,7 +899,6 @@
 				128809472B9815450010B793 /* DestinationFormView.swift in Sources */,
 				128809352B95F76D0010B793 /* ShoppingToDoDetailStore.swift in Sources */,
 				128809702B99A08E0010B793 /* LearningToDoFormStore.swift in Sources */,
-				128809A02B9AD20F0010B793 /* CoreDataRepository.swift in Sources */,
 				128809932B99FC6B0010B793 /* OverlayVStack.swift in Sources */,
 				128809A62B9AFFBF0010B793 /* DashboardStore.swift in Sources */,
 				1288094B2B9815600010B793 /* DestinationFormStore.swift in Sources */,
@@ -902,18 +917,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				128808B52B9184CF0010B793 /* Blinterns_ToDo_AppTests.swift in Sources */,
 				12D506902BA1AC8800D01C79 /* TabBar_AppTests.swift in Sources */,
 				12D5068C2BA18B1900D01C79 /* Root_AppTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		128808B62B9184CF0010B793 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				128808C12B9184CF0010B793 /* Blinterns_ToDo_AppUITestsLaunchTests.swift in Sources */,
-				128808BF2B9184CF0010B793 /* Blinterns_ToDo_AppUITests.swift in Sources */,
+				1242FE7F2BA8232B00970129 /* SubjectForm_AppTests.swift in Sources */,
+				1242FE7D2BA7F54100970129 /* DestinationForm_AppTests.swift in Sources */,
+				122E65C72BA2D5FE00D74E46 /* Dashboard_AppTests.swift in Sources */,
+				1242FE782BA7D67500970129 /* ToDoFormChildAlert_AppTests.swift in Sources */,
+				122E65CF2BA420AE00D74E46 /* ToDoForm_AppTests.swift in Sources */,
+				122E65C92BA2FB4400D74E46 /* ToDoList_AppTests.swift in Sources */,
+				1242FE852BA8270200970129 /* ToDoDetail_AppTests.swift in Sources */,
+				1242FE7B2BA7E3F600970129 /* ProductForm_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,11 +937,6 @@
 			isa = PBXTargetDependency;
 			target = 1288089F2B9184CE0010B793 /* Blinterns_ToDo_App */;
 			targetProxy = 128808B12B9184CF0010B793 /* PBXContainerItemProxy */;
-		};
-		128808BC2B9184CF0010B793 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1288089F2B9184CE0010B793 /* Blinterns_ToDo_App */;
-			targetProxy = 128808BB2B9184CF0010B793 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1152,42 +1160,6 @@
 			};
 			name = Release;
 		};
-		128808CB2B9184CF0010B793 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 82FNT5YCSV;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "nucizz.Blinterns-ToDo-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Blinterns_ToDo_App;
-			};
-			name = Debug;
-		};
-		128808CC2B9184CF0010B793 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 82FNT5YCSV;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "nucizz.Blinterns-ToDo-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Blinterns_ToDo_App;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1214,15 +1186,6 @@
 			buildConfigurations = (
 				128808C82B9184CF0010B793 /* Debug */,
 				128808C92B9184CF0010B793 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		128808CA2B9184CF0010B793 /* Build configuration list for PBXNativeTarget "Blinterns_ToDo_AppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				128808CB2B9184CF0010B793 /* Debug */,
-				128808CC2B9184CF0010B793 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

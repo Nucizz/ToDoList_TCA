@@ -6,8 +6,28 @@
 	<dict>
 		<key>Blinterns_ToDo_App.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1288089F2B9184CE0010B793</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>128808AF2B9184CF0010B793</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>128808B92B9184CF0010B793</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

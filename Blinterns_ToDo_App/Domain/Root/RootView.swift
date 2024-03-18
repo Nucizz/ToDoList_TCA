@@ -29,16 +29,6 @@ struct RootView: View {
                 }
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                 .padding(80)
-                .navigationDestination(
-                    store: self.store.scope(
-                        state: \.$tabBarState,
-                        action: { .tabBarAction($0) }
-                    )
-                ) { viewStore in
-                    TabBarView(store: viewStore)
-                        .navigationBarBackButtonHidden()
-                        .transition(.scale)
-                }
                 .alert("Welcome!", isPresented: viewStore.$isLoginAlertPresented) {
                     TextField(text: viewStore.$nameField) {
                         Text("Your Name")
@@ -52,9 +42,19 @@ struct RootView: View {
                 } message: {
                     Text("Please login to continue.")
                 }
-                .onAppear {
-                    store.send(.onAppear)
-                }
+            }
+            .navigationDestination(
+                store: self.store.scope(
+                    state: \.$tabBarState,
+                    action: { .tabBarAction($0) }
+                )
+            ) { viewStore in
+                TabBarView(store: viewStore)
+                    .navigationBarBackButtonHidden()
+                    .transition(.scale)
+            }
+            .onAppear {
+                store.send(.onAppear)
             }
         }
     }

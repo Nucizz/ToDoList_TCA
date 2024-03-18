@@ -1,43 +1,43 @@
-    //
-    //  ToDoRepository.swift
-    //  Blinterns_ToDo_App
-    //
-    //  Created by Calvin Anacia Suciawan on 14-03-2024.
-    //
+//
+//  ToDoRepository.swift
+//  Blinterns_ToDo_App
+//
+//  Created by Calvin Anacia Suciawan on 14-03-2024.
+//
 
-    import Foundation
-    import CoreData
-    import Dependencies
+import Foundation
+import CoreData
+import Dependencies
 
-    struct ToDoRepository {
-        var createToDo: (AnyToDoModel) throws -> Void
-        var fetchToDo: () throws -> [AnyToDoModel]
-        var updateToDo: (AnyToDoModel) throws -> Void
-        var deleteToDo: (UUID) throws -> Void
-    }
+struct ToDoRepository {
+    var createToDo: (AnyToDoModel) throws -> Void
+    var fetchToDo: () throws -> [AnyToDoModel]
+    var updateToDo: (AnyToDoModel) throws -> Void
+    var deleteToDo: (UUID) throws -> Void
+}
 
-    extension ToDoRepository {
-        static private func getContext() -> NSManagedObjectContext {
-            let persistentContainer: NSPersistentContainer = {
-                let container = NSPersistentContainer(name: "CoreDatabase")
-                container.loadPersistentStores { description, error in
-                    if let error = error {
-                        fatalError("Failed to load Core Data stack: \(error)")
-                    }
+extension ToDoRepository {
+    static private func getContext() -> NSManagedObjectContext {
+        let persistentContainer: NSPersistentContainer = {
+            let container = NSPersistentContainer(name: "CoreDatabase")
+            container.loadPersistentStores { description, error in
+                if let error = error {
+                    fatalError("Failed to load Core Data stack: \(error)")
                 }
-                return container
-            }()
-            
-            return persistentContainer.viewContext
-        }
-        
-        static private func jsonString(jsonData: Data) throws -> String {
-            if let encodedString = String(data: jsonData, encoding: .utf8) {
-                return encodedString
             }
-            throw CsError.JsonError.conversionFailure
-        }
+            return container
+        }()
+        
+        return persistentContainer.viewContext
     }
+    
+    static private func jsonString(jsonData: Data) throws -> String {
+        if let encodedString = String(data: jsonData, encoding: .utf8) {
+            return encodedString
+        }
+        throw CsError.JsonError.conversionFailure
+    }
+}
 
 extension ToDoRepository: DependencyKey {
     static var liveValue: ToDoRepository {
@@ -134,6 +134,7 @@ extension ToDoRepository: DependencyKey {
             },
             deleteToDo: { id in
                 let context = getContext()
+                @Dependency(\.fileManagerRepository) var fileManagerRepository
                 let fetchRequest: NSFetchRequest<Document> = Document.fetchRequest()
                 fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
                 
@@ -149,9 +150,7 @@ extension ToDoRepository: DependencyKey {
                         if let productList = shoppingToDoValue.productList {
                             for product in productList {
                                 if let path = product.imagePath {
-                                    if !FileManagerRepository().deleteImage(fileName: path) {
-                                        throw CsError.FileManagerError.imageNotFound
-                                    }
+                                    try fileManagerRepository.deleteImage(path)
                                 }
                             }
                         }

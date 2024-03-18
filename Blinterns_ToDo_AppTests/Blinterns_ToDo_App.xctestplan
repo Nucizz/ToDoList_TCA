@@ -1,0 +1,18 @@
+{
+  "configurations" : [
+
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Blinterns_ToDo_App.xcodeproj",
+        "identifier" : "128808AF2B9184CF0010B793",
+        "name" : "Blinterns_ToDo_AppTests"
+      }
+    }
+  ],
+  "version" : 1
+}

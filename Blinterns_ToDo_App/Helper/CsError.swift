@@ -9,12 +9,18 @@ import Foundation
 
 struct CsError {
     
+    enum URLError: Error {
+        case invalidURLError
+    }
+    
     enum ToDoError: Error {
         case dataNotFound
     }
     
     enum FileManagerError: Error  {
         case imageNotFound
+        case imageCompressionFailure
+        case invalidApplicationURL
     }
     
     enum JsonError: Error  {

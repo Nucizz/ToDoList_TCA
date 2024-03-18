@@ -8,7 +8,6 @@
 import Dependencies
 import Foundation
 import ComposableArchitecture
-import UIKit
 
 struct WeatherRepository {
     var fetchWeather: @Sendable (Double, Double) async throws -> WeatherResponse
@@ -20,7 +19,7 @@ extension WeatherRepository: DependencyKey {
             fetchWeather: { longitude, latitude in
                 let API = APILink()
                 guard let url = URL(string: "\(API.URL_openWeather)?lat=\(latitude)&lon=\(longitude)&units=metric&appid=\(API.KEY_openWeather)") else {
-                    throw CsError.linkFailure
+                    throw CsError.URLError.invalidURLError
                 }
                 
                 let (data, _) = try await URLSession.shared.data(from: url)

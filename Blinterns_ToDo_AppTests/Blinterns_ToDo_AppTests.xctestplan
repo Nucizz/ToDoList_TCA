@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "D63DA823-4209-4126-91DA-C56328DBB6EA",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Blinterns_ToDo_App.xcodeproj",
+        "identifier" : "128808AF2B9184CF0010B793",
+        "name" : "Blinterns_ToDo_AppTests"
+      }
+    }
+  ],
+  "version" : 1
+}
