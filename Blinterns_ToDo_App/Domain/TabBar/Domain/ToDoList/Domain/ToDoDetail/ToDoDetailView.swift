@@ -39,10 +39,16 @@ struct ToDoDetailView: View {
                         }
                         
                         if let deadlineTime = viewStore.toDo.deadlineTime {
-                            Text(Formatter().formatDateTime(date: deadlineTime))
-                                .foregroundColor(.secondary)
-                                .font(.callout)
-                                .bold()
+                            HStack {
+                                Image(systemName: "calendar")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxWidth: 16)
+                                Text(Formatter().formatDateTime(date: deadlineTime))
+                                    .font(.callout)
+                                    .bold()
+                            }
+                            .foregroundColor(.secondary)
                         }
                         
                         if viewStore.toDo.deadlineTime != nil &&
