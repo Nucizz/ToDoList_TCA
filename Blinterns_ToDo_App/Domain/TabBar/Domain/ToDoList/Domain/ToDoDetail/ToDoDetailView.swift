@@ -10,6 +10,8 @@ import ComposableArchitecture
 
 struct ToDoDetailView: View {
     let store: StoreOf<ToDoDetailReducer>
+    @State private var deleteButtonOpacity: CGFloat = 0.0
+    @State private var lateTextOpacity: CGFloat = 0.0
     
     var body: some View {
         NavigationView {
@@ -35,7 +37,27 @@ struct ToDoDetailView: View {
                                     .foregroundColor(.white)
                                     .background(.red)
                                     .cornerRadius(5)
+                                    .opacity(lateTextOpacity)
+                                    .onAppear {
+                                        withAnimation {
+                                            lateTextOpacity = 1
+                                        }
+                                    }
+                                    .onDisappear {
+                                        withAnimation {
+                                            lateTextOpacity = 0
+                                        }
+                                    }
                             }
+                            
+                            Text(viewStore.toDo.category.rawValue)
+                                .font(.callout)
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 5)
+                                .background(viewStore.toDo.category.color)
+                                .cornerRadius(5)
                         }
                         
                         if let deadlineTime = viewStore.toDo.deadlineTime {
@@ -44,6 +66,7 @@ struct ToDoDetailView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(maxWidth: 16)
+                                
                                 Text(Formatter().formatDateTime(date: deadlineTime))
                                     .font(.callout)
                                     .bold()
@@ -83,11 +106,22 @@ struct ToDoDetailView: View {
                         }
                         .padding(.top, 30)
                         
-                        if viewStore.toDo.isFinished {
+                        if viewStore.toDo.isFinished {                            
                             CsRectangleButton(title: "Delete To-Do", bgColor: .red) {
                                 store.send(.view(.onDeleteButtonTapped))
                             }
                             .padding(.top, 15)
+                            .opacity(deleteButtonOpacity)
+                            .onAppear {
+                                withAnimation {
+                                    deleteButtonOpacity = 1
+                                }
+                            }
+                            .onDisappear {
+                                withAnimation {
+                                    deleteButtonOpacity = 0
+                                }
+                            }
                         }
                         
                         Spacer()

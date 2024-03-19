@@ -95,7 +95,7 @@ extension ToDoCategory {
         case .traveling:
             return Color.purple
         case .learning:
-            return Color.purple
+            return Color.green
         default:
             return Color.accentColor
         }

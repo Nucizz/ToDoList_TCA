@@ -12,7 +12,7 @@ struct ToDoListCardView: View {
     @State var toDo: AnyToDoModel
     let onChecked: (_ updatedToDo: AnyToDoModel) -> Void
     let onTapped: () -> Void
-    
+        
     func getTitleColor() -> Color {
         if let deadlineTime = toDo.deadlineTime,
            deadlineTime <= Date.now && !toDo.isFinished {
