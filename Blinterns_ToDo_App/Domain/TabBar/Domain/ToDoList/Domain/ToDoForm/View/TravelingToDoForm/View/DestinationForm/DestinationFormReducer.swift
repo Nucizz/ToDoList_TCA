@@ -43,8 +43,8 @@ extension DestinationFormReducer {
                     })
                     return .none
                 case .onAddressRowTapped(let address):
-                    state.latitude = address.latitude!
-                    state.longitude = address.longitude!
+                    state.latitude = address.latitude
+                    state.longitude = address.longitude
                     state.destinationNameField = address.name
                     state.addressField = address.address ?? ""
                     

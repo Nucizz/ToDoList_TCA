@@ -13,70 +13,16 @@ struct ToDoListView: View {
     
     var body: some View {
         NavigationView {
-            WithViewStore(self.store, observe: { $0 }) { viewStore in
-                VStack(alignment: .leading) {
-                    Picker("To-Do Category",
-                           selection: viewStore.$filterValue
-                    ) {
-                        ForEach(ToDoCategory.allCases, id: \.self) { category in
-                            Text(category.rawValue)
-                                .tag(category.rawValue)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    .onChange(of: viewStore.filterValue) {
-                        store.send(.view(.setCategoryFilter))
-                    }
-                    .padding(.horizontal, 15)
+            VStack(alignment: .leading) {
+                CategoryPicker()
                     .padding(.top, 15)
-                    if let filteredList = viewStore.toDoList[viewStore.filterValue], !filteredList.isEmpty {
-                        List {
-                            ForEach(filteredList, id: \.self) { toDo in
-                                ToDoListCardView(
-                                    toDo: toDo,
-                                    onChecked: { updatedToDo in
-                                        store.send(.view(.onFinishCheckboxToggled(updatedToDo)))
-                                    },
-                                    onTapped: {
-                                        store.send(.view(.onRowViewBodyTapped(toDo)))
-                                    }
-                                )
-                            }
-                            .deleteDisabled(true)
-                        }
-                    } else {
-                        VStack(alignment: .center) {
-                            Image(systemName: "list.bullet.clipboard.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 75)
-                                .foregroundColor(.gray)
-                            Text("To-do list is empty.")
-                                .font(.headline)
-                                .foregroundColor(.secondary)
-                                .padding(.top, 15)
-                        }
-                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
-                    }
-                }
+                
+                ToDoList()
             }
             .background(Color(UIColor.secondarySystemBackground))
             .navigationBarTitle("To-Do List", displayMode: .inline)
             .navigationBarItems(
-                leading: {
-                    WithViewStore(self.store, observe: {$0}) { viewStore in
-                        if !viewStore.finishedToDoIdList[viewStore.filterValue]!.isEmpty {
-                            Button(action: {
-                                store.send(.view(.onDeleteButtonTapped))
-                            }) {
-                                Image(systemName: "trash")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                                    .foregroundColor(.red)
-                            }
-                        }
-                    }
-                }(),
+                leading: TrashButton(),
                 trailing: Button(action: {
                     store.send(.view(.onAddButtonTapped))
                 }) {
@@ -115,6 +61,80 @@ struct ToDoListView: View {
             )
         )
     }
+}
+
+extension ToDoListView {
+    
+    @ViewBuilder private func ToDoList() -> some View {
+        WithViewStore(self.store, observe: { (toDoList: $0.toDoList, filterValue: $0.filterValue) }, removeDuplicates: ==) { toDoListViewStore in
+            if let filteredList = toDoListViewStore.toDoList[toDoListViewStore.filterValue], !filteredList.isEmpty {
+                List {
+                    ForEach(filteredList, id: \.self) { toDo in
+                        ToDoListCardView(
+                            toDo: toDo,
+                            onChecked: { updatedToDo in
+                                store.send(.view(.onFinishCheckboxToggled(updatedToDo)))
+                            },
+                            onTapped: {
+                                store.send(.view(.onRowViewBodyTapped(toDo)))
+                            }
+                        )
+                    }
+                    .deleteDisabled(true)
+                }
+            } else {
+                VStack(alignment: .center) {
+                    Image(systemName: "list.bullet.clipboard.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 75)
+                        .foregroundColor(.gray)
+                    Text("To-do list is empty.")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 15)
+                }
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
+            }
+        }
+    }
+    
+    @ViewBuilder private func CategoryPicker() -> some View {
+        WithViewStore(self.store, observe: \.filterValue ) { filterViewStore in
+            Picker("To-Do Category",
+                   selection: filterViewStore.binding(
+                    get: { $0 },
+                    send: { .binding(.set(\.$filterValue, $0)) }
+                   )
+            ) {
+                ForEach(ToDoCategory.allCases, id: \.self) { category in
+                    Text(category.rawValue)
+                        .tag(category.rawValue)
+                }
+            }
+            .pickerStyle(.segmented)
+            .onChange(of: filterViewStore.state) {
+                store.send(.view(.setCategoryFilter))
+            }
+            .padding(.horizontal, 15)
+        }
+    }
+    
+    @ViewBuilder private func TrashButton() -> some View {
+        WithViewStore(self.store, observe: { (finishedToDoIdList: $0.finishedToDoIdList, filterValue: $0.filterValue) }, removeDuplicates: ==) { trashViewStore in
+            if let obeservedFinishedToDoIdList = trashViewStore.finishedToDoIdList[trashViewStore.filterValue], !obeservedFinishedToDoIdList.isEmpty {
+                Button(action: {
+                    store.send(.view(.onDeleteButtonTapped))
+                }) {
+                    Image(systemName: "trash")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.red)
+                }
+            }
+        }
+    }
+    
 }
 
 #Preview {

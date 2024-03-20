@@ -25,13 +25,18 @@ extension FileManagerRepository{
                     throw CsError.FileManagerError.imageCompressionFailure
                 }
                 
-                guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
-                    throw CsError.FileManagerError.invalidApplicationURL
-                }
-                
                 do {
+                    guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+                        throw CsError.FileManagerError.invalidApplicationURL
+                    }
+                    
                     let fileName = String(Date.now.timeIntervalSince1970)
-                    try data.write(to: directory.appendingPathComponent(fileName)!)
+                    
+                    guard let path = directory.appendingPathComponent(fileName) else {
+                        throw CsError.FileManagerError.pathFailure
+                    }
+                    
+                    try data.write(to: path)
                     return fileName
                 } catch {
                     throw error
@@ -51,7 +56,7 @@ extension FileManagerRepository{
                 
                 do {
                     let imageData = try Data(contentsOf: fileURL)
-                    return UIImage(data: imageData)!
+                    return UIImage(data: imageData) ?? UIImage(named: "Set an Image")!
                 } catch {
                     throw error
                 }

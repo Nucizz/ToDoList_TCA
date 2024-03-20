@@ -17,9 +17,12 @@ struct TabBarView: View {
     }
     
     var body: some View {
-        WithViewStore(self.store, observe: {$0}) { viewStore in
+        WithViewStore(self.store, observe: \.selectedTab) { viewStore in
             TabView(
-                selection: viewStore.$selectedTab
+                selection: viewStore.binding(
+                    get: { $0 },
+                    send: { .binding(.set(\.$selectedTab, $0)) }
+                )
             ) {
                 
                 DashboardView(

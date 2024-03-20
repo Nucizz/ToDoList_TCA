@@ -39,12 +39,15 @@ extension ProductFormReducer {
                     var newProduct = Product(name: state.nameField)
                     
                     if !state.productUrlField.isEmpty {
+                        if !state.productUrlField.hasPrefix("http") {
+                            state.productUrlField = "http://\(state.productUrlField)"
+                        }
                         newProduct.storeUrl = state.productUrlField
                     }
                     
-                    if state.productImageFile != nil {
+                    if let imageFile = state.productImageFile {
                         do {
-                            newProduct.imagePath = try fileManagerRepository.saveImage(state.productImageFile!)
+                            newProduct.imagePath = try fileManagerRepository.saveImage(imageFile)
                         } catch {
                             state.alertState = .init(title: {
                                 .init("Sorry...")

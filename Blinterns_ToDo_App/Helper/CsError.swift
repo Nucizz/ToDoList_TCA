@@ -21,9 +21,11 @@ struct CsError {
         case imageNotFound
         case imageCompressionFailure
         case invalidApplicationURL
+        case pathFailure
     }
     
     enum JsonError: Error  {
         case conversionFailure
+        case incompleteData
     }
 }

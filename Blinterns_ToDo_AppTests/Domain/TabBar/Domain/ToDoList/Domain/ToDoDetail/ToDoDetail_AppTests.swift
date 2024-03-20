@@ -35,7 +35,9 @@ extension ToDoDetail_AppTests {
         }
         
         await shoppingStore.send(.internal(.handleToDoTypeDetail)) {
-            $0.shoppingToDoDetailState = .init(toDo: shoppingToDo.getValue() as! ShoppingToDo)
+            if let toDo = shoppingToDo.getValue() as? ShoppingToDo {
+                $0.shoppingToDoDetailState = .init(toDo: toDo)
+            }
         }
         
         await shoppingStore.finish()
@@ -45,7 +47,9 @@ extension ToDoDetail_AppTests {
         }
         
         await travelingStore.send(.internal(.handleToDoTypeDetail)) {
-            $0.travellingToDoDetailState = .init(toDo: travelingToDo.getValue() as! TravelingToDo)
+            if let toDo = travelingToDo.getValue() as? TravelingToDo {
+                $0.travellingToDoDetailState = .init(toDo: toDo)
+            }
         }
         
         await travelingStore.finish()
@@ -55,7 +59,9 @@ extension ToDoDetail_AppTests {
         }
         
         await learningStore.send(.internal(.handleToDoTypeDetail)) {
-            $0.learningToDoDetailState = .init(toDo: learningToDo.getValue() as! LearningToDo)
+            if let toDo = learningToDo.getValue() as? LearningToDo {
+                $0.learningToDoDetailState = .init(toDo: toDo)
+            }
         }
         
         await learningStore.finish()

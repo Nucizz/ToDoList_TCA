@@ -16,19 +16,19 @@ struct ToDoDetailView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                WithViewStore(store, observe: { $0 }) { viewStore in
+                WithViewStore(store, observe: \.toDo) { viewStore in
                     VStack(alignment: .leading, spacing: 0) {
                         HStack(alignment: .center) {
                             
-                            Text(viewStore.toDo.title)
+                            Text(viewStore.state.title)
                                 .font(.title)
                                 .bold()
                                 .padding(.vertical, 2)
                             
                             Spacer()
                             
-                            if let deadlineTime = viewStore.toDo.deadlineTime,
-                               deadlineTime <= Date.now && !viewStore.toDo.isFinished {
+                            if let deadlineTime = viewStore.state.deadlineTime,
+                               deadlineTime <= Date.now && !viewStore.state.isFinished {
                                 Text("Late")
                                     .font(.callout)
                                     .bold()
@@ -50,17 +50,17 @@ struct ToDoDetailView: View {
                                     }
                             }
                             
-                            Text(viewStore.toDo.category.rawValue)
+                            Text(viewStore.state.category.rawValue)
                                 .font(.callout)
                                 .bold()
                                 .foregroundColor(.white)
                                 .padding(.vertical, 2)
                                 .padding(.horizontal, 5)
-                                .background(viewStore.toDo.category.color)
+                                .background(viewStore.state.category.color)
                                 .cornerRadius(5)
                         }
                         
-                        if let deadlineTime = viewStore.toDo.deadlineTime {
+                        if let deadlineTime = viewStore.state.deadlineTime {
                             HStack {
                                 Image(systemName: "calendar")
                                     .resizable()
@@ -74,13 +74,13 @@ struct ToDoDetailView: View {
                             .foregroundColor(.secondary)
                         }
                         
-                        if viewStore.toDo.deadlineTime != nil &&
-                            viewStore.toDo.description != nil { //MARK: For Better Padding UIUX
+                        if viewStore.state.deadlineTime != nil &&
+                            viewStore.state.description != nil { //MARK: For Better Padding UIUX
                             Spacer()
                                 .frame(height: 30)
                         }
                         
-                        if let description = viewStore.toDo.description {
+                        if let description = viewStore.state.description {
                             Text(description)
                                 .font(.callout)
                         }
@@ -101,12 +101,12 @@ struct ToDoDetailView: View {
                             .padding(.top, 15)
                         }
                         
-                        CsToggleRectangleButton(isActive: viewStore.toDo.isFinished) {
+                        CsToggleRectangleButton(isActive: viewStore.state.isFinished) {
                             store.send(.view(.onFinishButtonToggled))
                         }
                         .padding(.top, 30)
                         
-                        if viewStore.toDo.isFinished {                            
+                        if viewStore.state.isFinished {                            
                             CsRectangleButton(title: "Delete To-Do", bgColor: .red) {
                                 store.send(.view(.onDeleteButtonTapped))
                             }

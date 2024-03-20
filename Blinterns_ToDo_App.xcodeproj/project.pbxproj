@@ -39,7 +39,6 @@
 		128809002B9228610010B793 /* ToDoFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128808FF2B9228610010B793 /* ToDoFormView.swift */; };
 		128809032B93AD4A0010B793 /* CsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809022B93AD4A0010B793 /* CsTextField.swift */; };
 		128809052B93AD760010B793 /* CsTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809042B93AD750010B793 /* CsTextEditor.swift */; };
-		128809072B93BA490010B793 /* CsDateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809062B93BA490010B793 /* CsDateField.swift */; };
 		1288090A2B942D830010B793 /* ShoppingToDoFormStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809092B942D830010B793 /* ShoppingToDoFormStore.swift */; };
 		1288090C2B942D900010B793 /* ShoppingToDoFormReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1288090B2B942D900010B793 /* ShoppingToDoFormReducer.swift */; };
 		1288090E2B942D9D0010B793 /* ShoppingToDoFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1288090D2B942D9D0010B793 /* ShoppingToDoFormView.swift */; };
@@ -82,7 +81,6 @@
 		128809842B99D8470010B793 /* LearningToDoDetailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809832B99D8470010B793 /* LearningToDoDetailStore.swift */; };
 		128809862B99D8530010B793 /* LearningToDoDetailReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809852B99D8530010B793 /* LearningToDoDetailReducer.swift */; };
 		128809882B99D85E0010B793 /* LearningToDoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809872B99D85E0010B793 /* LearningToDoDetailView.swift */; };
-		128809932B99FC6B0010B793 /* OverlayVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809922B99FC6B0010B793 /* OverlayVStack.swift */; };
 		1288099E2B9AD1AA0010B793 /* CoreDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1288099C2B9AD1AA0010B793 /* CoreDatabase.xcdatamodeld */; };
 		128809A22B9AD8710010B793 /* CsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809A12B9AD8710010B793 /* CsError.swift */; };
 		128809A42B9AFFAF0010B793 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809A32B9AFFAF0010B793 /* DashboardView.swift */; };
@@ -92,7 +90,6 @@
 		128809AD2B9B78AC0010B793 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809AC2B9B78AC0010B793 /* WeatherResponse.swift */; };
 		128809AF2B9B79130010B793 /* WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809AE2B9B79130010B793 /* WeatherRepository.swift */; };
 		128809B12B9B79A70010B793 /* APILink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128809B02B9B79A70010B793 /* APILink.swift */; };
-		12D506862B9CE5A500D01C79 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D506852B9CE5A500D01C79 /* Response.swift */; };
 		12D506892BA02BE800D01C79 /* UserLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D506882BA02BE800D01C79 /* UserLocationHelper.swift */; };
 		12D5068C2BA18B1900D01C79 /* Root_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D5068B2BA18B1900D01C79 /* Root_AppTests.swift */; };
 		12D5068E2BA194C100D01C79 /* UserDefaultRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D5068D2BA194C100D01C79 /* UserDefaultRepository.swift */; };
@@ -145,7 +142,6 @@
 		128808FF2B9228610010B793 /* ToDoFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoFormView.swift; sourceTree = "<group>"; };
 		128809022B93AD4A0010B793 /* CsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CsTextField.swift; sourceTree = "<group>"; };
 		128809042B93AD750010B793 /* CsTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CsTextEditor.swift; sourceTree = "<group>"; };
-		128809062B93BA490010B793 /* CsDateField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CsDateField.swift; sourceTree = "<group>"; };
 		128809092B942D830010B793 /* ShoppingToDoFormStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingToDoFormStore.swift; sourceTree = "<group>"; };
 		1288090B2B942D900010B793 /* ShoppingToDoFormReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingToDoFormReducer.swift; sourceTree = "<group>"; };
 		1288090D2B942D9D0010B793 /* ShoppingToDoFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingToDoFormView.swift; sourceTree = "<group>"; };
@@ -189,7 +185,6 @@
 		128809832B99D8470010B793 /* LearningToDoDetailStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningToDoDetailStore.swift; sourceTree = "<group>"; };
 		128809852B99D8530010B793 /* LearningToDoDetailReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningToDoDetailReducer.swift; sourceTree = "<group>"; };
 		128809872B99D85E0010B793 /* LearningToDoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningToDoDetailView.swift; sourceTree = "<group>"; };
-		128809922B99FC6B0010B793 /* OverlayVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayVStack.swift; sourceTree = "<group>"; };
 		1288099D2B9AD1AA0010B793 /* CoreDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDatabase.xcdatamodel; sourceTree = "<group>"; };
 		128809A12B9AD8710010B793 /* CsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CsError.swift; sourceTree = "<group>"; };
 		128809A32B9AFFAF0010B793 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -199,7 +194,6 @@
 		128809AC2B9B78AC0010B793 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		128809AE2B9B79130010B793 /* WeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepository.swift; sourceTree = "<group>"; };
 		128809B02B9B79A70010B793 /* APILink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILink.swift; sourceTree = "<group>"; };
-		12D506852B9CE5A500D01C79 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		12D506882BA02BE800D01C79 /* UserLocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationHelper.swift; sourceTree = "<group>"; };
 		12D5068B2BA18B1900D01C79 /* Root_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root_AppTests.swift; sourceTree = "<group>"; };
 		12D5068D2BA194C100D01C79 /* UserDefaultRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultRepository.swift; sourceTree = "<group>"; };
@@ -452,7 +446,6 @@
 			children = (
 				128809022B93AD4A0010B793 /* CsTextField.swift */,
 				128809042B93AD750010B793 /* CsTextEditor.swift */,
-				128809062B93BA490010B793 /* CsDateField.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -490,7 +483,6 @@
 		1288091B2B95A7920010B793 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				12D506842B9CE59B00D01C79 /* Model */,
 				128809AE2B9B79130010B793 /* WeatherRepository.swift */,
 				1288091C2B95A7A50010B793 /* FileManagerRepository.swift */,
 				12D5068D2BA194C100D01C79 /* UserDefaultRepository.swift */,
@@ -537,7 +529,6 @@
 			isa = PBXGroup;
 			children = (
 				128809302B95D6D30010B793 /* CsToggleRectangleButton.swift */,
-				128809922B99FC6B0010B793 /* OverlayVStack.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -701,14 +692,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		12D506842B9CE59B00D01C79 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				12D506852B9CE5A500D01C79 /* Response.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		12D506872BA02BD600D01C79 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,7 +841,6 @@
 				128809A42B9AFFAF0010B793 /* DashboardView.swift in Sources */,
 				128808E92B91AE6F0010B793 /* ToDoListReducer.swift in Sources */,
 				128809292B95C7FB0010B793 /* ToDoDetailReducer.swift in Sources */,
-				12D506862B9CE5A500D01C79 /* Response.swift in Sources */,
 				1288097C2B99C7EA0010B793 /* SubjectRowView.swift in Sources */,
 				128809402B9811660010B793 /* TravelingToDoFormView.swift in Sources */,
 				128808ED2B91AF0A0010B793 /* ToDo.swift in Sources */,
@@ -868,7 +850,6 @@
 				128809152B9491D30010B793 /* ProductFormView.swift in Sources */,
 				128809002B9228610010B793 /* ToDoFormView.swift in Sources */,
 				128808F82B9201260010B793 /* ToDoRowView.swift in Sources */,
-				128809072B93BA490010B793 /* CsDateField.swift in Sources */,
 				128809132B9491C50010B793 /* ProductFormReducer.swift in Sources */,
 				128809AF2B9B79130010B793 /* WeatherRepository.swift in Sources */,
 				128809682B9977340010B793 /* LocationRepository.swift in Sources */,
@@ -899,7 +880,6 @@
 				128809472B9815450010B793 /* DestinationFormView.swift in Sources */,
 				128809352B95F76D0010B793 /* ShoppingToDoDetailStore.swift in Sources */,
 				128809702B99A08E0010B793 /* LearningToDoFormStore.swift in Sources */,
-				128809932B99FC6B0010B793 /* OverlayVStack.swift in Sources */,
 				128809A62B9AFFBF0010B793 /* DashboardStore.swift in Sources */,
 				1288094B2B9815600010B793 /* DestinationFormStore.swift in Sources */,
 				128808E72B91AE600010B793 /* ToDoListStore.swift in Sources */,

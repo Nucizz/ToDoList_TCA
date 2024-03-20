@@ -40,11 +40,17 @@
                     self.isDeadlineTimeActive = toDoAttribute.deadlineTime == nil ? false : true
                     isEditing = true
                 } else {
-                    if category == .all || category == nil {
+                    switch category {
+                    case .shopping:
+                        self.categoryValueField = .shopping
+                    case .learning:
+                        self.categoryValueField = .learning
+                    case .traveling:
+                        self.categoryValueField = .learning
+                    default:
                         self.categoryValueField = .general
-                    } else {
-                        self.categoryValueField = category!
                     }
+                    
                     self.titleField = ""
                     self.descriptionField = ""
                     self.deadlineTimeField = date.now

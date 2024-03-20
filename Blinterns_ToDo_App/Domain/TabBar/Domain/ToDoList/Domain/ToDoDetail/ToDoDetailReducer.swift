@@ -62,13 +62,19 @@ extension ToDoDetailReducer {
                 case .handleToDoTypeDetail:
                     switch state.toDo.category {
                     case .shopping:
-                        state.shoppingToDoDetailState = .init(toDo: state.toDo.getValue() as! ShoppingToDo)
+                        if let shoppingToDo = state.toDo.getValue() as? ShoppingToDo {
+                            state.shoppingToDoDetailState = .init(toDo: shoppingToDo)
+                        }
                         return .none
                     case .traveling:
-                        state.travellingToDoDetailState = .init(toDo: state.toDo.getValue() as! TravelingToDo)
+                        if let travelingToDo = state.toDo.getValue() as? TravelingToDo {
+                            state.travellingToDoDetailState = .init(toDo: travelingToDo)
+                        }
                         return .none
                     case .learning:
-                        state.learningToDoDetailState = .init(toDo: state.toDo.getValue() as! LearningToDo)
+                        if let learningToDo = state.toDo.getValue() as? LearningToDo {
+                            state.learningToDoDetailState = .init(toDo: learningToDo)
+                        }
                         return .none
                     default:
                         return .none

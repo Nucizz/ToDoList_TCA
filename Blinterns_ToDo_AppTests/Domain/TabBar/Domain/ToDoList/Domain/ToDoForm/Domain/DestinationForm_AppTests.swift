@@ -40,11 +40,16 @@ extension DestinationForm_AppTests {
             $0.searchResult = self.addressList
         }
         
+        guard let mockAddress = mockDestinationWCords.address else {
+            XCTFail()
+            return
+        }
+        
         await store.send(.view(.onAddressRowTapped(mockDestinationWCords))) { [self] in
             $0.latitude = mockDestinationWCords.latitude
             $0.longitude = mockDestinationWCords.longitude
             $0.destinationNameField = mockDestinationWCords.name
-            $0.addressField = mockDestinationWCords.address!
+            $0.addressField = mockAddress
             $0.isMarked = true
             $0.searchField = ""
             $0.searchResult = []
@@ -82,8 +87,13 @@ extension DestinationForm_AppTests {
             $0.destinationNameField = self.mockDestination.name
         }
         
-        await store.send(.binding(.set(\.$addressField, mockDestination.address!))) {
-            $0.addressField = self.mockDestination.address!
+        guard let mockAddress = mockDestinationWCords.address else {
+            XCTFail()
+            return
+        }
+        
+        await store.send(.binding(.set(\.$addressField, mockAddress))) {
+            $0.addressField = mockAddress
         }
         
         await store.send(.view(.onAddDestinationButtonTapped))

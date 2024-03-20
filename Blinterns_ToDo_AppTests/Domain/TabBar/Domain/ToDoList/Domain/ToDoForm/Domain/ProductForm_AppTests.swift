@@ -28,8 +28,13 @@ extension ProductForm_AppTests {
             $0.nameField = self.mockProduct.name
         }
         
-        await store.send(.binding(.set(\.$productUrlField, mockProduct.storeUrl!))) {
-            $0.productUrlField = self.mockProduct.storeUrl!
+        guard let mockStoreUrl = mockProduct.storeUrl else {
+            XCTFail()
+            return
+        }
+        
+        await store.send(.binding(.set(\.$productUrlField, mockStoreUrl))) {
+            $0.productUrlField = mockStoreUrl
         }
         
         await store.send(.view(.onAddButtonTapped))

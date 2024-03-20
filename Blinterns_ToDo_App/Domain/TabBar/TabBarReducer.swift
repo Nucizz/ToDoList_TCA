@@ -34,11 +34,11 @@ extension TabBarReducer {
                     do {
                         let response = try toDoRepository.fetchToDo()
                         for toDo in response {
-                            state.toDoListState.toDoList[toDo.category]!.append(toDo)
-                            state.toDoListState.toDoList[.all]!.append(toDo)
+                            state.toDoListState.toDoList[toDo.category]?.append(toDo)
+                            state.toDoListState.toDoList[.all]?.append(toDo)
                             if toDo.isFinished {
-                                state.toDoListState.finishedToDoIdList[toDo.category]!.append(toDo.id)
-                                state.toDoListState.finishedToDoIdList[.all]!.append(toDo.id)
+                                state.toDoListState.finishedToDoIdList[toDo.category]?.append(toDo.id)
+                                state.toDoListState.finishedToDoIdList[.all]?.append(toDo.id)
                             }
                         }
                     } catch {

@@ -55,11 +55,11 @@ extension TabBar_AppTests {
         
         await store.receive(.internal(.fetchToDo)) {
             for toDo in self.toDoList {
-                $0.toDoListState.toDoList[toDo.category]!.append(toDo)
-                $0.toDoListState.toDoList[.all]!.append(toDo)
+                $0.toDoListState.toDoList[toDo.category]?.append(toDo)
+                $0.toDoListState.toDoList[.all]?.append(toDo)
                 if toDo.isFinished {
-                    $0.toDoListState.finishedToDoIdList[toDo.category]!.append(toDo.id)
-                    $0.toDoListState.finishedToDoIdList[.all]!.append(toDo.id)
+                    $0.toDoListState.finishedToDoIdList[toDo.category]?.append(toDo.id)
+                    $0.toDoListState.finishedToDoIdList[.all]?.append(toDo.id)
                 }
             }
         }

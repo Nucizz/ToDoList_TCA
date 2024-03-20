@@ -12,40 +12,12 @@ struct LearningToDoFormView: View {
     let store: StoreOf<LearningToDoFormReducer>
     
     var body: some View {
-        WithViewStore(self.store, observe: {$0}) { viewStore in
-            VStack(alignment: .leading) {
-                Text("Learning Configuration")
-                    .font(.title2)
-                    .bold()
-                VStack(alignment: .leading) {
-                    Button(action: {
-                        store.send(.view(.onAddSubjectButtonTapped))
-                    }) {
-                        HStack(alignment: .firstTextBaseline, spacing: 5) {
-                            Image(systemName: "plus")
-                            Text("Add new")
-                            Spacer()
-                        }
-                        .foregroundColor(.accentColor)
-                    }
-                    .padding(15)
-                    .frame(maxWidth: .infinity)
-                    .contentShape(Rectangle())
-                    ForEach(viewStore.subjectList.indices, id: \.self) { index in
-                        SubjectRowView(subject: viewStore.subjectList[index])
-                            .padding(.horizontal, 15)
-                            .padding(.bottom, 15)
-                            .contentShape(Rectangle())
-                            .onLongPressGesture {
-                                store.send(.view(.subjectRowLongPressed(index)))
-                            }
-                    }
-                }
-                .background(.background)
-                .frame(maxWidth: .infinity)
-                .cornerRadius(5)
-                .padding(.top, 15)
-            }
+        VStack(alignment: .leading) {
+            Text("Learning Configuration")
+                .font(.title2)
+                .bold()
+            
+            SubjectList()
         }
         .sheet(
             store: self.store.scope(
@@ -70,6 +42,46 @@ struct LearningToDoFormView: View {
             )
         )
     }
+}
+
+extension LearningToDoFormView {
+    
+    @ViewBuilder private func SubjectList() -> some View {
+        VStack(alignment: .leading) {
+            Button(action: {
+                store.send(.view(.onAddSubjectButtonTapped))
+            }) {
+                HStack(alignment: .firstTextBaseline, spacing: 5) {
+                    Image(systemName: "plus")
+                    Text("Add new")
+                    Spacer()
+                }
+                .foregroundColor(.accentColor)
+            }
+            .padding(15)
+            .frame(maxWidth: .infinity)
+            .contentShape(Rectangle())
+            
+            WithViewStore(self.store, observe: \.subjectList) { subjectListViewStore in
+                ForEach(subjectListViewStore.state.indices, id: \.self) { index in
+                    SubjectRowView(subject: subjectListViewStore.state[index])
+                        .padding(.horizontal, 15)
+                        .padding(.bottom, 15)
+                        .contentShape(Rectangle())
+                        .onLongPressGesture {
+                            store.send(.view(.subjectRowLongPressed(index)))
+                        }
+                }
+            }
+            
+        }
+        .background(.background)
+        .frame(maxWidth: .infinity)
+        .cornerRadius(5)
+        .padding(.top, 15)
+        
+    }
+    
 }
 
 #Preview {

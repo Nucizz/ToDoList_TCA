@@ -12,9 +12,11 @@ struct CsImagePicker: View {
     @Binding var selectedImage: UIImage?
     @State var photosPickerItem: PhotosPickerItem?
     
+    //TODO: USE CACHE ON PHOTO
+    
     var body: some View {
         PhotosPicker(selection: $photosPickerItem) {
-            Image(uiImage: (selectedImage ?? UIImage(named: "Set an Image"))!)
+            Image(uiImage: (selectedImage ?? UIImage(named: "Set an Image")!))
                 .resizable()
                 .scaledToFill()
                 .frame(maxWidth: .infinity, maxHeight: 180)
@@ -22,11 +24,10 @@ struct CsImagePicker: View {
         }
         .onChange(of: photosPickerItem) {
             Task {
-                if let photosPickerItem {
-                    let data = try await photosPickerItem.loadTransferable(type: Data.self)
-                    if let image = UIImage(data: data!) {
-                        selectedImage = image
-                    }
+                if let photosPickerItem,
+                   let data = try await photosPickerItem.loadTransferable(type: Data.self),
+                   let image = UIImage(data: data) {
+                    selectedImage = image
                 }
                 photosPickerItem = nil
             }

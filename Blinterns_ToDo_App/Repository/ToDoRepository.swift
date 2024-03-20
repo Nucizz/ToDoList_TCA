@@ -50,16 +50,16 @@ extension ToDoRepository: DependencyKey {
                 
                 switch toDo.category {
                 case .shopping:
-                    jsonData = try encoder.encode(toDo.getValue() as! ShoppingToDo)
+                    jsonData = try encoder.encode(toDo.getValue() as? ShoppingToDo)
                     break
                 case .traveling:
-                    jsonData = try encoder.encode(toDo.getValue() as! TravelingToDo)
+                    jsonData = try encoder.encode(toDo.getValue() as? TravelingToDo)
                     break
                 case .learning:
-                    jsonData = try encoder.encode(toDo.getValue() as! LearningToDo)
+                    jsonData = try encoder.encode(toDo.getValue() as? LearningToDo)
                     break
                 default:
-                    jsonData = try encoder.encode(toDo.getValue() as! GeneralTodo)
+                    jsonData = try encoder.encode(toDo.getValue() as? GeneralTodo)
                     break
                 }
                 
@@ -81,7 +81,11 @@ extension ToDoRepository: DependencyKey {
                         throw CsError.JsonError.conversionFailure
                     }
                     
-                    switch ToDoCategory.init(rawValue: jsonObject.category!) {
+                    guard let rawCategory = jsonObject.category else {
+                        throw CsError.JsonError.incompleteData
+                    }
+                    
+                    switch ToDoCategory.init(rawValue: rawCategory) {
                     case .shopping:
                          return AnyToDoModel(
                             value: try decoder.decode(ShoppingToDo.self, from: jsonData)
@@ -115,16 +119,16 @@ extension ToDoRepository: DependencyKey {
                     
                     switch toDo.category {
                     case .shopping:
-                        jsonData = try encoder.encode(toDo.getValue() as! ShoppingToDo)
+                        jsonData = try encoder.encode(toDo.getValue() as? ShoppingToDo)
                         break
                     case .traveling:
-                        jsonData = try encoder.encode(toDo.getValue() as! TravelingToDo)
+                        jsonData = try encoder.encode(toDo.getValue() as? TravelingToDo)
                         break
                     case .learning:
-                        jsonData = try encoder.encode(toDo.getValue() as! LearningToDo)
+                        jsonData = try encoder.encode(toDo.getValue() as? LearningToDo)
                         break
                     default:
-                        jsonData = try encoder.encode(toDo.getValue() as! GeneralTodo)
+                        jsonData = try encoder.encode(toDo.getValue() as? GeneralTodo)
                         break
                     }
                     
@@ -144,7 +148,7 @@ extension ToDoRepository: DependencyKey {
                         throw CsError.JsonError.conversionFailure
                     }
                     
-                    if ToDoCategory.init(rawValue: jsonObject.category!) == .shopping {
+                    if ToDoCategory.init(rawValue: jsonObject.category ?? "") == .shopping {
                         let shoppingToDoValue = try JSONDecoder().decode(ShoppingToDo.self, from: jsonData)
                         
                         if let productList = shoppingToDoValue.productList {

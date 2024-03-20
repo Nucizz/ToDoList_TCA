@@ -12,18 +12,16 @@ struct SubjectFormView: View {
     let store: StoreOf<SubjectFormReducer>
     
     var body: some View {
-        WithViewStore(self.store, observe: {$0}) { viewStore in
-            VStack {
-                CsTextField(text: viewStore.$titleField, placeholder: "Subject Title", keyboardType: .default)
-                CsTextField(text: viewStore.$sourceUrlField, placeholder: "Source Link", keyboardType: .URL)
-                CsTextEditor(text: viewStore.$noteField, placeholder: "Notes")
-                CsRectangleButton(title: "Add Subject") {
-                    store.send(.view(.onAddSubjectButtonTapped))
-                }
-                Spacer()
+        VStack {
+            TitleField()
+            SourceField()
+            NoteField()
+            CsRectangleButton(title: "Add Subject") {
+                store.send(.view(.onAddSubjectButtonTapped))
             }
-            .padding(.horizontal, 15)
+            Spacer()
         }
+        .padding(.horizontal, 15)
         .alert(
             store: store.scope(
                 state: \.$alertState,
@@ -31,6 +29,48 @@ struct SubjectFormView: View {
             )
         )
     }
+}
+
+extension SubjectFormView {
+    
+    @ViewBuilder private func TitleField() -> some View {
+        WithViewStore(self.store, observe: \.titleField) { titleViewStore in
+            CsTextField(
+                text: titleViewStore.binding(
+                    get: { $0 },
+                    send: { .binding(.set(\.$titleField, $0)) }
+                ),
+                placeholder: "Subject Title",
+                keyboardType: .default
+            )
+        }
+    }
+    
+    @ViewBuilder private func SourceField() -> some View {
+        WithViewStore(self.store, observe: \.sourceUrlField) { sourceViewStore in
+            CsTextField(
+                text: sourceViewStore.binding(
+                    get: { $0 },
+                    send: { .binding(.set(\.$sourceUrlField, $0)) }
+                ),
+                placeholder: "Source Link",
+                keyboardType: .URL
+            )
+        }
+    }
+    
+    @ViewBuilder private func NoteField() -> some View {
+        WithViewStore(self.store, observe: \.noteField) { noteViewStore in
+            CsTextEditor(
+                text: noteViewStore.binding(
+                    get: { $0 },
+                    send: { .binding(.set(\.$noteField, $0)) }
+                ),
+                placeholder: "Notes"
+            )
+        }
+    }
+    
 }
 
 #Preview {

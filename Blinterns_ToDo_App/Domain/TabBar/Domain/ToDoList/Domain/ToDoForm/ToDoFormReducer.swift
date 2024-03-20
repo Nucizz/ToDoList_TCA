@@ -39,19 +39,27 @@ extension ToDoFormReducer {
                     
                     let descriptionText = state.descriptionField.isEmpty ? nil : state.descriptionField
                     let deadlineTime = state.isDeadlineTimeActive ? state.deadlineTimeField : nil
-                    let id = state.editedToDoChildValue != nil ? state.editedToDoChildValue?.id : nil
+                    let id = state.editedToDoChildValue?.id ?? uuidRepository.callAsFunction()
+                    let isFinished = state.editedToDoChildValue?.isFinished ?? false
                     
                     switch state.categoryValueField {
                     case .general:
                         let newGeneralToDo = AnyToDoModel(
                             value: GeneralTodo(
-                                id: id ?? uuidRepository.callAsFunction(), title: state.titleField, description: descriptionText,
-                                deadlineTime: deadlineTime, isFinished: false
+                                id: id,
+                                title: state.titleField,
+                                description: descriptionText,
+                                deadlineTime: deadlineTime,
+                                isFinished: isFinished
                             )
                         )
                         return .send(.internal(.handleAddOrEdit(newGeneralToDo)))
                     case .shopping:
-                        if state.shoppingToDoFormState!.budgetField.isEmpty {
+                        guard let shoppingForm = state.shoppingToDoFormState else {
+                            return .send(.internal(.handleCategoryInitiation))
+                        }
+                        
+                        if shoppingForm.budgetField.isEmpty {
                             state.alertState = .init(title: {
                                 .init("Fill the form!")
                             }, actions: {
@@ -62,7 +70,7 @@ extension ToDoFormReducer {
                                 .init("Please state the shopping budget.")
                             })
                             return .none
-                        } else if !NSPredicate(format: "SELF MATCHES %@", RegularExpression.decimal).evaluate(with: state.shoppingToDoFormState!.budgetField) {
+                        } else if !NSPredicate(format: "SELF MATCHES %@", RegularExpression.decimal).evaluate(with: state.shoppingToDoFormState?.budgetField) {
                             state.alertState = .init(title: {
                                 .init("Invalid form statement!")
                             }, actions: {
@@ -77,15 +85,22 @@ extension ToDoFormReducer {
                         
                         let newShoppingToDo = AnyToDoModel(
                             value: ShoppingToDo(
-                                id: id ?? uuidRepository.callAsFunction(), title: state.titleField, description: descriptionText,
-                                deadlineTime: deadlineTime, isFinished: false,
-                                budget: Double(state.shoppingToDoFormState!.budgetField)!,
-                                productList: state.shoppingToDoFormState!.productList.isEmpty ? nil : state.shoppingToDoFormState!.productList
+                                id: id,
+                                title: state.titleField,
+                                description: descriptionText,
+                                deadlineTime: deadlineTime,
+                                isFinished: isFinished,
+                                budget: Double(shoppingForm.budgetField) ?? 0.0,
+                                productList: shoppingForm.productList.isEmpty ? nil : shoppingForm.productList
                             )
                         )
                         return .send(.internal(.handleAddOrEdit(newShoppingToDo)))
                     case .traveling:
-                        if state.travelingToDoFormState!.budgetField.isEmpty {
+                        guard let travelingForm = state.travelingToDoFormState else {
+                            return .send(.internal(.handleCategoryInitiation))
+                        }
+                        
+                        if travelingForm.budgetField.isEmpty {
                             state.alertState = .init(title: {
                                 .init("Fill the form!")
                             }, actions: {
@@ -111,20 +126,30 @@ extension ToDoFormReducer {
                         
                         let newTravelingToDo = AnyToDoModel(
                             value: TravelingToDo(
-                                id: id ?? uuidRepository.callAsFunction(), title: state.titleField, description: descriptionText,
-                                deadlineTime: deadlineTime, isFinished: false,
-                                budget: Double(state.travelingToDoFormState!.budgetField)!,
-                                destinationList: state.travelingToDoFormState!.destinationList.isEmpty ? nil :
-                                    state.travelingToDoFormState!.destinationList
+                                id: id,
+                                title: state.titleField,
+                                description: descriptionText,
+                                deadlineTime: deadlineTime,
+                                isFinished: isFinished,
+                                budget: Double(travelingForm.budgetField) ?? 0.0,
+                                destinationList: travelingForm.destinationList.isEmpty ? nil :
+                                    travelingForm.destinationList
                             )
                         )
                         return .send(.internal(.handleAddOrEdit(newTravelingToDo)))
-                    case .learning:                        
+                    case .learning:     
+                        guard let learningForm = state.learningToDoFormState else {
+                            return .send(.internal(.handleCategoryInitiation))
+                        }
+                        
                         let newLearningToDo = AnyToDoModel(
                             value: LearningToDo(
-                                id: id ?? uuidRepository.callAsFunction(), title: state.titleField, description: descriptionText,
-                                deadlineTime: deadlineTime, isFinished: false,
-                                subjectList: state.learningToDoFormState!.subjectList.isEmpty ? nil : state.learningToDoFormState!.subjectList
+                                id: id,
+                                title: state.titleField,
+                                description: descriptionText,
+                                deadlineTime: deadlineTime,
+                                isFinished: isFinished,
+                                subjectList: learningForm.subjectList.isEmpty ? nil : learningForm.subjectList
                             )
                         )
                         return .send(.internal(.handleAddOrEdit(newLearningToDo)))
@@ -138,13 +163,13 @@ extension ToDoFormReducer {
                     if state.isEditing {
                         switch state.categoryValueField {
                         case .shopping:
-                            state.shoppingToDoFormState = .init(toDo: state.editedToDoChildValue!.getValue() as? ShoppingToDo)
+                            state.shoppingToDoFormState = .init(toDo: state.editedToDoChildValue?.getValue() as? ShoppingToDo)
                             return .none
                         case .traveling:
-                            state.travelingToDoFormState = .init(toDo: state.editedToDoChildValue!.getValue() as? TravelingToDo)
+                            state.travelingToDoFormState = .init(toDo: state.editedToDoChildValue?.getValue() as? TravelingToDo)
                             return .none
                         case .learning:
-                            state.learningToDoFormState = .init(toDo: state.editedToDoChildValue!.getValue() as? LearningToDo)
+                            state.learningToDoFormState = .init(toDo: state.editedToDoChildValue?.getValue() as? LearningToDo)
                             return .none
                         default:
                             return .none

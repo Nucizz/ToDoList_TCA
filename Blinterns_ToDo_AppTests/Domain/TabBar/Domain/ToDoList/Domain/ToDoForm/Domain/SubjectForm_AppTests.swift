@@ -25,12 +25,22 @@ extension SubjectForm_AppTests {
             $0.titleField = self.mockSubject.title
         }
         
-        await store.send(.binding(.set(\.$sourceUrlField, mockSubject.sourceUrl!))) {
-            $0.sourceUrlField = self.mockSubject.sourceUrl!
+        guard let mockSourceUrl = mockSubject.sourceUrl else {
+            XCTFail()
+            return
         }
         
-        await store.send(.binding(.set(\.$noteField, mockSubject.note!))) {
-            $0.noteField = self.mockSubject.note!
+        await store.send(.binding(.set(\.$sourceUrlField, mockSourceUrl))) {
+            $0.sourceUrlField = mockSourceUrl
+        }
+        
+        guard let mockNote = mockSubject.note else {
+            XCTFail()
+            return
+        }
+        
+        await store.send(.binding(.set(\.$noteField, mockNote))) {
+            $0.noteField = mockNote
         }
         
         await store.send(.view(.onAddSubjectButtonTapped))

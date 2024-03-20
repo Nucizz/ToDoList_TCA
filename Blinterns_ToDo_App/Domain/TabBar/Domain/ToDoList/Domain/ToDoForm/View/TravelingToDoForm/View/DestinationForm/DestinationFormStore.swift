@@ -18,10 +18,9 @@ struct DestinationFormReducer: ReducerProtocol {
         @BindingState var searchResult: [Destination] = []
         @BindingState var addressField: String = ""
         
-        
-        @BindingState var longitude: Double? = nil
-        @BindingState var latitude: Double? = nil
-        @BindingState var isMarked: Bool = false
+        var longitude: Double? = nil
+        var latitude: Double? = nil
+        var isMarked: Bool = false
         
         @PresentationState var alertState: AlertState<Action.AlertAction>?
     }

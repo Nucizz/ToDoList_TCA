@@ -9,9 +9,9 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    @Binding var isMarked: Bool
-    @Binding var latitude: Double?
-    @Binding var longitude: Double?
+    var isMarked: Bool
+    var latitude: Double?
+    var longitude: Double?
     let locationManager = CLLocationManager()
     
     var body: some View {
@@ -43,12 +43,6 @@ extension MapView {
     }
 }
 
-struct MapView_Previews: PreviewProvider {
-    @State static var latitude: Double? = nil
-    @State static var longitude: Double? = nil
-    @State static var isMarked: Bool = false
-    
-    static var previews: some View {
-        MapView(isMarked: $isMarked, latitude: $latitude, longitude: $longitude)
-    }
+#Preview {
+    MapView(isMarked: false, latitude: nil, longitude: nil)
 }

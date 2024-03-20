@@ -148,14 +148,14 @@ extension ToDoList_AppTests {
         }
         
         await store.send(.view(.onDeleteButtonTapped)) {
-            $0.finishedToDoIdList[.all]! = []
-            $0.finishedToDoIdList[.traveling]! = []
-            $0.toDoList[.all]! = [
+            $0.finishedToDoIdList[.all]? = []
+            $0.finishedToDoIdList[.traveling]? = []
+            $0.toDoList[.all]? = [
                 self.generalToDo,
                 self.shoppingToDo,
                 self.learningToDo
             ]
-            $0.toDoList[.traveling]! = []
+            $0.toDoList[.traveling]? = []
         }
         
     }
@@ -223,8 +223,8 @@ extension ToDoList_AppTests {
         }
         
         await store.send(.toDoFormAction(.presented(.external(.onToDoAdded(generalToDo))))) { [self] in
-            $0.toDoList[.all]! = [generalToDo]
-            $0.toDoList[.general]! = [generalToDo]
+            $0.toDoList[.all]? = [generalToDo]
+            $0.toDoList[.general]? = [generalToDo]
         }
         
         await store.receive(.toDoFormAction(.dismiss)) {

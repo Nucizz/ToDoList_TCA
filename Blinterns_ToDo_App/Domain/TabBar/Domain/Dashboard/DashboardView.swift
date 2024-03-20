@@ -45,18 +45,18 @@ struct DashboardView: View {
     
     @ViewBuilder func weatherWidget() -> some View {
         let formatter = Formatter()
-        WithViewStore(store.self, observe: \.weatherResponse) { viewStore in
-            if viewStore.state != nil {
+        WithViewStore(store.self, observe: \.weatherResponse) { weatherViewStore in
+            if let data = weatherViewStore.state {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack(alignment: .center, spacing: 10) {
-                        Text(viewStore.state!.weather.first!.main)
+                        Text(data.weather.first?.main ?? "None")
                             .font(.title2)
                             .bold()
-                        Text("\(formatter.formatTemperature(temperature: viewStore.state!.main.temp))")
+                        Text("\(formatter.formatTemperature(temperature: data.main.temp))")
                             .font(.title3)
                             .bold()
                         Spacer()
-                        Text(viewStore.state!.name)
+                        Text(data.name)
                             .bold()
                             .foregroundColor(.secondary)
                         
@@ -64,22 +64,22 @@ struct DashboardView: View {
                     VStack(alignment: .leading) {
                         
                         HStack(spacing: 10) {
-                            Text("L: \(formatter.formatTemperature(temperature: viewStore.state!.main.temp_min))")
+                            Text("L: \(formatter.formatTemperature(temperature: data.main.temp_min))")
                                 .font(.callout)
                                 .foregroundColor(.secondary)
-                            Text("H: \(formatter.formatTemperature(temperature: viewStore.state!.main.temp_max))")
+                            Text("H: \(formatter.formatTemperature(temperature: data.main.temp_max))")
                                 .font(.callout)
                                 .foregroundColor(.secondary)
-                            Text("Feels: \(formatter.formatTemperature(temperature: viewStore.state!.main.feels_like))")
+                            Text("Feels: \(formatter.formatTemperature(temperature: data.main.feels_like))")
                                 .font(.callout)
                                 .foregroundColor(.secondary)
                         }
                     }
-                    Text("Visibility \(viewStore.state!.visibility/1000)KM")
+                    Text("Visibility \(data.visibility/1000)KM")
                         .font(.callout)
                         .bold()
                         .foregroundColor(.secondary)
-                    Text("Humidity \(viewStore.state!.main.humidity)%")
+                    Text("Humidity \(data.main.humidity)%")
                         .font(.callout)
                         .bold()
                         .foregroundColor(.secondary)

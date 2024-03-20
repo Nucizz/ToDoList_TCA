@@ -135,8 +135,13 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.titleField = expectedNewToDo.title
         }
         
-        await store.send(.binding(.set(\.$descriptionField, expectedNewToDo.description!))) {
-            $0.descriptionField = expectedNewToDo.description!
+        guard let mockDescription = expectedNewToDo.description else {
+            XCTFail()
+            return
+        }
+        
+        await store.send(.binding(.set(\.$descriptionField, mockDescription))) {
+            $0.descriptionField = mockDescription
         }
         
         await store.send(.binding(.set(\.$isDeadlineTimeActive, true))) {
@@ -152,7 +157,10 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
     
     func testShoppingAddToDoButtonSuccess() async {
         let expectedAnyNewToDo = getShoppingToDo()
-        let expectedNewToDo = expectedAnyNewToDo.getValue() as! ShoppingToDo
+        guard let expectedNewToDo = expectedAnyNewToDo.getValue() as? ShoppingToDo else {
+            XCTFail()
+            return
+        }
         
         let store = TestStore(initialState: ToDoFormReducer.State()) {
             ToDoFormReducer()
@@ -176,8 +184,13 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.titleField = expectedNewToDo.title
         }
         
-        await store.send(.binding(.set(\.$descriptionField, expectedNewToDo.description!))) {
-            $0.descriptionField = expectedNewToDo.description!
+        guard let mockDescription = expectedNewToDo.description else {
+            XCTFail()
+            return
+        }
+        
+        await store.send(.binding(.set(\.$descriptionField, mockDescription))) {
+            $0.descriptionField = mockDescription
         }
         
         await store.send(.shoppingToDoFormAction(.binding(.set(\.$budgetField, "\(expectedNewToDo.budget)")))) {
@@ -185,15 +198,20 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         }
         
         await store.send(.shoppingToDoFormAction(.view(.onAddProductButtonTapped))) {
-            $0.shoppingToDoFormState!.addProductState = .init()
+            $0.shoppingToDoFormState?.addProductState = .init()
         }
         
-        await store.send(.shoppingToDoFormAction(.addProductAction(.presented(.external(.onProductAdded(expectedNewToDo.productList!.first!)))))) {
-            $0.shoppingToDoFormState!.productList = expectedNewToDo.productList!
+        guard let mockProductList = expectedNewToDo.productList, let mockProduct = mockProductList.first else {
+            XCTFail()
+            return
+        }
+        
+        await store.send(.shoppingToDoFormAction(.addProductAction(.presented(.external(.onProductAdded(mockProduct)))))) {
+            $0.shoppingToDoFormState?.productList = mockProductList
         }
         
         await store.receive(.shoppingToDoFormAction(.addProductAction(.dismiss))) {
-            $0.shoppingToDoFormState!.addProductState = nil
+            $0.shoppingToDoFormState?.addProductState = nil
         }
         
         await store.send(.view(.onAddOrEditButtonTapped))
@@ -205,7 +223,10 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
 
     func testTravellingAddToDoButtonSuccess() async {
         let expectedAnyNewToDo = getTravelingToDo()
-        let expectedNewToDo = expectedAnyNewToDo.getValue() as! TravelingToDo
+        guard let expectedNewToDo = expectedAnyNewToDo.getValue() as? TravelingToDo else {
+            XCTFail()
+            return
+        }
         
         let store = TestStore(initialState: ToDoFormReducer.State()) {
             ToDoFormReducer()
@@ -229,8 +250,13 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.titleField = expectedNewToDo.title
         }
         
-        await store.send(.binding(.set(\.$descriptionField, expectedNewToDo.description!))) {
-            $0.descriptionField = expectedNewToDo.description!
+        guard let mockDescription = expectedNewToDo.description else {
+            XCTFail()
+            return
+        }
+        
+        await store.send(.binding(.set(\.$descriptionField, mockDescription))) {
+            $0.descriptionField = mockDescription
         }
         
         await store.send(.travelingToDoFormAction(.binding(.set(\.$budgetField, "\(expectedNewToDo.budget)")))) {
@@ -238,15 +264,20 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         }
         
         await store.send(.travelingToDoFormAction(.view(.onAddDestinationButtonTapped))) {
-            $0.travelingToDoFormState!.addDestinationState = .init()
+            $0.travelingToDoFormState?.addDestinationState = .init()
         }
         
-        await store.send(.travelingToDoFormAction(.addDestinationAction(.presented(.external(.onDestinationAdded(expectedNewToDo.destinationList!.first!)))))) {
-            $0.travelingToDoFormState!.destinationList = expectedNewToDo.destinationList!
+        guard let mockDestinationList = expectedNewToDo.destinationList, let mockDestination = mockDestinationList.first else {
+            XCTFail()
+            return
+        }
+        
+        await store.send(.travelingToDoFormAction(.addDestinationAction(.presented(.external(.onDestinationAdded(mockDestination)))))) {
+            $0.travelingToDoFormState?.destinationList = mockDestinationList
         }
         
         await store.receive(.travelingToDoFormAction(.addDestinationAction(.dismiss))) {
-            $0.travelingToDoFormState!.addDestinationState = nil
+            $0.travelingToDoFormState?.addDestinationState = nil
         }
         
         await store.send(.view(.onAddOrEditButtonTapped))
@@ -258,7 +289,10 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
 
     func testLearningAddToDoButtonSuccess() async {
         let expectedAnyNewToDo = getLearningToDo()
-        let expectedNewToDo = expectedAnyNewToDo.getValue() as! LearningToDo
+        guard let expectedNewToDo = expectedAnyNewToDo.getValue() as? LearningToDo else {
+            XCTFail()
+            return
+        }
         
         let store = TestStore(initialState: ToDoFormReducer.State()) {
             ToDoFormReducer()
@@ -282,20 +316,30 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.titleField = expectedNewToDo.title
         }
         
-        await store.send(.binding(.set(\.$descriptionField, expectedNewToDo.description!))) {
-            $0.descriptionField = expectedNewToDo.description!
+        guard let mockDescription = expectedNewToDo.description else {
+            XCTFail()
+            return
+        }
+        
+        await store.send(.binding(.set(\.$descriptionField, mockDescription))) {
+            $0.descriptionField = mockDescription
         }
         
         await store.send(.learningToDoFormAction(.view(.onAddSubjectButtonTapped))) {
-            $0.learningToDoFormState!.addSubjectState = .init()
+            $0.learningToDoFormState?.addSubjectState = .init()
         }
         
-        await store.send(.learningToDoFormAction(.addSubjectAction(.presented(.external(.onSubjectAdded(expectedNewToDo.subjectList!.first!)))))) {
-            $0.learningToDoFormState!.subjectList = expectedNewToDo.subjectList!
+        guard let mockSubjectList = expectedNewToDo.subjectList, let mockSubject = mockSubjectList.first else {
+            XCTFail()
+            return
+        }
+        
+        await store.send(.learningToDoFormAction(.addSubjectAction(.presented(.external(.onSubjectAdded(mockSubject)))))) {
+            $0.learningToDoFormState?.subjectList = mockSubjectList
         }
         
         await store.receive(.learningToDoFormAction(.addSubjectAction(.dismiss))) {
-            $0.learningToDoFormState!.addSubjectState = nil
+            $0.learningToDoFormState?.addSubjectState = nil
         }
         
         await store.send(.view(.onAddOrEditButtonTapped))
@@ -367,7 +411,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         }
         
         await store.send(.shoppingToDoFormAction(.binding(.set(\.$budgetField, mockErrorBudget)))) {
-            $0.shoppingToDoFormState!.budgetField = self.mockErrorBudget
+            $0.shoppingToDoFormState?.budgetField = self.mockErrorBudget
         }
         
         await store.send(.view(.onAddOrEditButtonTapped)) {
@@ -423,7 +467,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         }
         
         await store.send(.travelingToDoFormAction(.binding(.set(\.$budgetField, mockErrorBudget)))) {
-            $0.travelingToDoFormState!.budgetField = self.mockErrorBudget
+            $0.travelingToDoFormState?.budgetField = self.mockErrorBudget
         }
         
         await store.send(.view(.onAddOrEditButtonTapped)) {
@@ -454,8 +498,13 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.titleField = expectedNewToDo.title
         }
         
-        await store.send(.binding(.set(\.$descriptionField, expectedNewToDo.description!))) {
-            $0.descriptionField = expectedNewToDo.description!
+        guard let mockDescription = expectedNewToDo.description else {
+            XCTFail()
+            return
+        }
+        
+        await store.send(.binding(.set(\.$descriptionField, mockDescription))) {
+            $0.descriptionField = mockDescription
         }
         
         await store.send(.binding(.set(\.$isDeadlineTimeActive, true))) {

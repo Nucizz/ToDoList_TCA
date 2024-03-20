@@ -51,7 +51,7 @@ extension RootReducer {
                 }
             case .onLoginButtonTapped:
                 userDefaultRepository.setUsername(state.nameField)
-                userDefaultRepository.setExpireTime(Calendar.current.date(byAdding: .hour, value: 2, to: date.callAsFunction())!.timeIntervalSince1970)
+                userDefaultRepository.setExpireTime(Calendar.current.date(byAdding: .hour, value: 2, to: date.callAsFunction())?.timeIntervalSince1970 ?? date.now.timeIntervalSince1970)
                 return .send(.initTabBarView)
             case .alertInternalBugWorkaround:
                 //MARK: Issues going on with SwiftUI Alert button disabled initiation https://forums.developer.apple.com/forums/thread/737964
