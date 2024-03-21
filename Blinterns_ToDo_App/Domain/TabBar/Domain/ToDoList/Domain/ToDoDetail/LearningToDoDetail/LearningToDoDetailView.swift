@@ -12,16 +12,12 @@ struct LearningToDoDetailView: View {
     let store: StoreOf<LearningToDoDetailReducer>
     
     var body: some View {
-        WithViewStore(self.store, observe: \.toDo) { viewStore in
-            VStack {
-                VStack(alignment: .leading) {
-                    if let subjectList = viewStore.subjectList {
-                        Text("Your Learning Subject List")
-                        ForEach(subjectList, id: \.self) { subject in
-                            SubjectRowView(subject: subject)
-                                .contentShape(Rectangle())
-                        }
-                    }
+        WithViewStore(self.store, observe: \.subjectList) { subjectListViewStore in
+            if let subjectList = subjectListViewStore.state {
+                Text("Your Learning Subject List")
+                ForEach(subjectList, id: \.self) { subject in
+                    SubjectRowView(subject: subject)
+                        .contentShape(Rectangle())
                 }
             }
         }

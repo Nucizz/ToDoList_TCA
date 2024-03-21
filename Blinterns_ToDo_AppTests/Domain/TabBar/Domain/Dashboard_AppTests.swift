@@ -18,7 +18,7 @@ final class Dashboard_AppTests: XCTestCase {
             WeatherResponse.Weather(main: "Clear", description: "Clear sky"),
         ],
         main: WeatherResponse.Main(
-            temp: 25.0, feels_like: 26.0, temp_min: 24.0, temp_max: 26.0, humidity: 70
+            temp: 25.0, feelsLike: 26.0, tempMin: 24.0, tempMax: 26.0, humidity: 70
         ),
         visibility: 10000,
         name: "New York"
@@ -56,6 +56,7 @@ extension Dashboard_AppTests {
             DashboardReducer()
         } withDependencies: {
             $0.userDefaultRepository.setUsername(username)
+            $0.mainQueue = .immediate
         }
         
         XCTAssertEqual(

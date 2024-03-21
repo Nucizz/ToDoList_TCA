@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Formatter {
+struct Formatter: Equatable {
     
     func formatDateTime(date: Date) -> String {
         let dateFormatter = DateFormatter()

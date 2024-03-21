@@ -18,7 +18,7 @@ final class TabBar_AppTests: XCTestCase {
             WeatherResponse.Weather(main: "Clear", description: "Clear sky"),
         ],
         main: WeatherResponse.Main(
-            temp: 25.0, feels_like: 26.0, temp_min: 24.0, temp_max: 26.0, humidity: 70
+            temp: 25.0, feelsLike: 26.0, tempMin: 24.0, tempMax: 26.0, humidity: 70
         ),
         visibility: 10000,
         name: "New York"
@@ -63,7 +63,7 @@ extension TabBar_AppTests {
                 }
             }
         }
-        
+                
         await store.receive(.internal(.fetchWeatherResponse(.success(weatherResponse)))) {
             $0.dashboardState.weatherResponse = self.weatherResponse
         }
@@ -95,7 +95,7 @@ extension TabBar_AppTests {
         }
         
         await store.send(.internal(.fetchWeather))
-        
+                
         await store.receive(.internal(.fetchWeatherResponse(.failure(CsError.URLError.invalidURLError)))) {
             $0.alertState = .init(title: {
                 .init("Something went wrong!")

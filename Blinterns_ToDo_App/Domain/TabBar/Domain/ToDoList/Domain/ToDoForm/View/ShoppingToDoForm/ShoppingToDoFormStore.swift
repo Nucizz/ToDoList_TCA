@@ -9,6 +9,7 @@ import Foundation
 import ComposableArchitecture
 
 struct ShoppingToDoFormReducer: ReducerProtocol { 
+    @Dependency(\.fileManagerRepository) var fileManagerRepository
     
     struct State: Equatable {
         @BindingState var budgetField: String = ""

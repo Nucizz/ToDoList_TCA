@@ -29,7 +29,7 @@ extension ProductForm_AppTests {
         }
         
         guard let mockStoreUrl = mockProduct.storeUrl else {
-            XCTFail()
+            XCTFail("Mock Product not available.")
             return
         }
         

@@ -9,6 +9,7 @@ import Foundation
 import ComposableArchitecture
 
 struct RootReducer: ReducerProtocol {
+    @Dependency(\.mainQueue) var mainQueue
     @Dependency(\.date) var date
     @Dependency(\.userDefaultRepository) var userDefaultRepository
     

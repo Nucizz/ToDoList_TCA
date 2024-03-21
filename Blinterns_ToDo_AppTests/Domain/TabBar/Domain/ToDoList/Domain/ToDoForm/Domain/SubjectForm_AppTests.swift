@@ -26,7 +26,7 @@ extension SubjectForm_AppTests {
         }
         
         guard let mockSourceUrl = mockSubject.sourceUrl else {
-            XCTFail()
+            XCTFail("Mock Source URL not available.")
             return
         }
         
@@ -35,7 +35,7 @@ extension SubjectForm_AppTests {
         }
         
         guard let mockNote = mockSubject.note else {
-            XCTFail()
+            XCTFail("Mock Notes not available.")
             return
         }
         

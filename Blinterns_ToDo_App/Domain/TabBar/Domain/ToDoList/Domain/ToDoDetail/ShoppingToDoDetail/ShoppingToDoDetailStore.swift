@@ -9,10 +9,15 @@ import Foundation
 import ComposableArchitecture
 
 struct ShoppingToDoDetailReducer: ReducerProtocol {
-    
+
     struct State: Equatable {
-        let toDo: ShoppingToDo
+        let productList: [Product]?
+        let formattedBudget: String
         
+        init(toDo: ShoppingToDo) {
+            formattedBudget = Formatter().formatCurrency(value: toDo.budget)
+            productList = toDo.productList
+        }
     }
     
     enum Action: Equatable {

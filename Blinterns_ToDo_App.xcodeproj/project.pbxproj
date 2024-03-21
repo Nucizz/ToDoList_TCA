@@ -15,6 +15,7 @@
 		1242FE7D2BA7F54100970129 /* DestinationForm_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242FE7C2BA7F54100970129 /* DestinationForm_AppTests.swift */; };
 		1242FE7F2BA8232B00970129 /* SubjectForm_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242FE7E2BA8232B00970129 /* SubjectForm_AppTests.swift */; };
 		1242FE852BA8270200970129 /* ToDoDetail_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242FE842BA8270200970129 /* ToDoDetail_AppTests.swift */; };
+		124F54252BAC3A280092A62D /* ImageScaler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124F54242BAC3A280092A62D /* ImageScaler.swift */; };
 		128808A42B9184CE0010B793 /* Blinterns_ToDo_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128808A32B9184CE0010B793 /* Blinterns_ToDo_App.swift */; };
 		128808A82B9184CF0010B793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 128808A72B9184CF0010B793 /* Assets.xcassets */; };
 		128808AB2B9184CF0010B793 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 128808AA2B9184CF0010B793 /* Preview Assets.xcassets */; };
@@ -117,6 +118,7 @@
 		1242FE7C2BA7F54100970129 /* DestinationForm_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationForm_AppTests.swift; sourceTree = "<group>"; };
 		1242FE7E2BA8232B00970129 /* SubjectForm_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectForm_AppTests.swift; sourceTree = "<group>"; };
 		1242FE842BA8270200970129 /* ToDoDetail_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDetail_AppTests.swift; sourceTree = "<group>"; };
+		124F54242BAC3A280092A62D /* ImageScaler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScaler.swift; sourceTree = "<group>"; };
 		128808A02B9184CE0010B793 /* Blinterns_ToDo_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blinterns_ToDo_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		128808A32B9184CE0010B793 /* Blinterns_ToDo_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blinterns_ToDo_App.swift; sourceTree = "<group>"; };
 		128808A72B9184CF0010B793 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 				1288092D2B95D48B0010B793 /* Formatter.swift */,
 				128809A12B9AD8710010B793 /* CsError.swift */,
 				128809A92B9B6D750010B793 /* StringGenerator.swift */,
+				124F54242BAC3A280092A62D /* ImageScaler.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -848,6 +851,7 @@
 				128809052B93AD760010B793 /* CsTextEditor.swift in Sources */,
 				1288096E2B99A0800010B793 /* LearningToDoFormReducer.swift in Sources */,
 				128809152B9491D30010B793 /* ProductFormView.swift in Sources */,
+				124F54252BAC3A280092A62D /* ImageScaler.swift in Sources */,
 				128809002B9228610010B793 /* ToDoFormView.swift in Sources */,
 				128808F82B9201260010B793 /* ToDoRowView.swift in Sources */,
 				128809132B9491C50010B793 /* ProductFormReducer.swift in Sources */,

@@ -76,7 +76,6 @@
             }
             
             enum InternalAction: Equatable {
-                case handleCategoryInitiation
                 case handleAddOrEdit(AnyToDoModel)
             }
             

@@ -16,6 +16,7 @@ extension ToDoDetailReducer {
             switch action {
             case .binding:
                 return .none
+            
             case .view(let action):
                 switch action {
                 case .onFinishButtonToggled:
@@ -35,6 +36,7 @@ extension ToDoDetailReducer {
                         })
                         return .none
                     }
+                
                 case .onDeleteButtonTapped:
                     do {
                         try toDoRepository.deleteToDo(state.toDo.id)
@@ -51,12 +53,12 @@ extension ToDoDetailReducer {
                         })
                         return .none
                     }
+                
                 case .onEditButtonTapped:
                     state.toDoFormState = .init(toDo: state.toDo)
                     return .none
                 }
-            case .external:
-                return .none
+            
             case .internal(let action):
                 switch action {
                 case .handleToDoTypeDetail:
@@ -76,14 +78,20 @@ extension ToDoDetailReducer {
                             state.learningToDoDetailState = .init(toDo: learningToDo)
                         }
                         return .none
+                    
                     default:
                         return .none
                     }
                 }
+                
+            case .external:
+                return .none
+            
             case .toDoFormAction(let action):
                 switch action {
                 case .dismiss:
                     return .none
+                
                 case .presented(let action):
                     switch action {
                     case .external(let action):
@@ -92,29 +100,35 @@ extension ToDoDetailReducer {
                             state.toDo = toDo
                             state.toDoFormState = nil
                             return .send(.external(.onToDoUpdated(toDo)))
+                        
                         default:
                             return .none
                         }
+                    
                     default:
                         return .none
                     }
                 }
+            
             case .shoppingToDoDetailAction:
                 return .none
+            
             case .learningToDoDetailAction:
                 return .none
+            
             case .travelingToDoDetailAction:
                 return .none
+            
             case .alertAction(let action):
                 switch action {
                 case .dismiss:
                     state.alertState = nil
                     return .none
+                
                 case .presented:
                     return .none
                 }
             }
         }
     }
-    
 }

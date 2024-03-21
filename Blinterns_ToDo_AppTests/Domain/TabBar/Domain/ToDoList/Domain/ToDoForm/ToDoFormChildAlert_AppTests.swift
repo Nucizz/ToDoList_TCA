@@ -55,6 +55,8 @@ extension ToDoFormChildAlert_AppTests {
             toDo: shoppingToDoValue
         )) {
             ShoppingToDoFormReducer()
+        } withDependencies: {
+            $0.fileManagerRepository.deleteImage = { _ in }
         }
         
         await store.send(.view(.productRowLongPressed(deleteIndex))) {

@@ -16,11 +16,13 @@ extension TravelingToDoFormReducer {
             switch action {
             case .binding:
                 return .none
+            
             case .view(let action):
                 switch action {
                 case .onAddDestinationButtonTapped:
                     state.addDestinationState = .init()
                     return .none
+                
                 case .destinationRowLongPressed(let index):
                     state.alertState = .init(title: {
                         .init("Delete destination!")
@@ -36,11 +38,13 @@ extension TravelingToDoFormReducer {
                     })
                     return .none
                 }
+            
             case .addDestinationAction(let action):
                 switch action {
                 case .dismiss:
                     state.addDestinationState = nil
                     return .none
+                
                 case .presented(let action):
                     switch action {
                     case .external(let action):
@@ -49,20 +53,24 @@ extension TravelingToDoFormReducer {
                             state.destinationList.append(newDestination)
                             return .send(.addDestinationAction(.dismiss))
                         }
+                    
                     default:
                         return .none
                     }
                 }
+            
             case .alertAction(let action):
                 switch action {
                 case .dismiss:
                     state.alertState = nil
                     return .none
+                
                 case .presented(let action):
                     switch action {
                     case .onDeleteDestination(let index):
                         state.destinationList.remove(at: index)
                         return .send(.alertAction(.dismiss))
+                    
                     default:
                         return .none
                     }
@@ -70,5 +78,4 @@ extension TravelingToDoFormReducer {
             }
         }
     }
-    
 }

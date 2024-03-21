@@ -19,13 +19,13 @@ final class Root_AppTests: XCTestCase {
           RootReducer()
         } withDependencies: {
             $0.userDefaultRepository.fetchExpireTime = { 1 }
+            $0.userDefaultRepository.fetchUsername = { "User" }
             $0.date = { DateGenerator.constant(Date(timeIntervalSince1970: 0)) }()
+            $0.mainQueue = .immediate
         }
         
         await store.send(.onAppear)
-                
-        try? await Task.sleep(for: .seconds(2))
-        
+                        
         await store.receive(.initTabBarView) {
             $0.tabBarState = .init()
         }
@@ -39,20 +39,17 @@ final class Root_AppTests: XCTestCase {
         } withDependencies: {
             $0.userDefaultRepository.fetchExpireTime = { 0 }
             $0.date = { DateGenerator.constant(Date(timeIntervalSince1970: 1)) }()
+            $0.mainQueue = .immediate
         }
         
         await store.send(.onAppear)
         
-        try? await Task.sleep(for: .seconds(1))
-
         await store.receive(.presentLoginAlert) {
             $0.isLoginAlertPresented = true
         }
         
         XCTAssertFalse(store.state.nameField.isEmpty)
-        
-        try? await Task.sleep(for: .milliseconds(800))
-        
+                
         await store.receive(.alertInternalBugWorkaround) {
             $0.nameField = ""
         }
@@ -79,22 +76,23 @@ final class Root_AppTests: XCTestCase {
           )
         ) {
           RootReducer()
+        } withDependencies: {
+            $0.mainQueue = .immediate
         }
-                
-        await store.send(.tabBarAction(.presented(.external(.onLogout))))
         
-        await store.finish()
+        await store.send(.tabBarAction(.presented(.external(.onLogout))))
                 
         await store.receive(.tabBarAction(.dismiss)) {
             $0.tabBarState = nil
         }
-        
+
         await store.receive(.presentLoginAlert) {
             $0.isLoginAlertPresented = true
         }
-        
-        await store.skipReceivedActions()
-        await store.finish()
+                
+        await store.receive(.alertInternalBugWorkaround) {
+            $0.nameField = ""
+        }
     }
 
 }

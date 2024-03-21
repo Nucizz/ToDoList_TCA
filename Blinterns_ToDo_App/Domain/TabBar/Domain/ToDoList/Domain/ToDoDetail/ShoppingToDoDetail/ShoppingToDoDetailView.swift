@@ -12,22 +12,37 @@ struct ShoppingToDoDetailView: View {
     let store: StoreOf<ShoppingToDoDetailReducer>
     
     var body: some View {
-        WithViewStore(self.store, observe: \.toDo) { viewStore in
-            VStack(alignment: .leading) {
-                Text("Your Budget")
-                Text(Formatter().formatCurrency(value: viewStore.budget))
-                    .font(.title2)
-                    .bold()
-                    .padding(.bottom, 15)
-                if let productList = viewStore.productList {
-                    Text("Your Product List")
-                    ForEach(productList, id: \.self) { product in
-                        ProductRowView(product: product)
-                    }
+        VStack(alignment: .leading) {
+            Text("Your Budget")
+            FormattedBudgetText()
+                .padding(.bottom, 15)
+            
+            ProductList()
+        }
+    }
+}
+
+extension ShoppingToDoDetailView {
+    
+    @ViewBuilder private func FormattedBudgetText() -> some View {
+        WithViewStore(self.store, observe: \.formattedBudget) { formattedBudgetViewStore in
+            Text(formattedBudgetViewStore.state)
+                .font(.title2)
+                .bold()
+        }
+    }
+    
+    @ViewBuilder private func ProductList() -> some View {
+        WithViewStore(self.store, observe: \.productList) { productListViewStore in
+            if let productList = productListViewStore.state {
+                Text("Your Product List")
+                ForEach(productList, id: \.self) { product in
+                    ProductRowView(product: product)
                 }
             }
         }
     }
+    
 }
 
 #Preview {

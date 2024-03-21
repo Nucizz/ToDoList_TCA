@@ -16,11 +16,13 @@ extension LearningToDoFormReducer {
             switch action {
             case .binding:
                 return .none
+            
             case .view(let action):
                 switch action {
                 case .onAddSubjectButtonTapped:
                     state.addSubjectState = .init()
                     return .none
+                
                 case .subjectRowLongPressed(let index):
                     state.alertState = .init(title: {
                         .init("Delete subject!")
@@ -36,11 +38,13 @@ extension LearningToDoFormReducer {
                     })
                     return .none
                 }
+            
             case .addSubjectAction(let action):
                 switch action {
                 case .dismiss:
                     state.addSubjectState = nil
                     return .none
+                
                 case .presented(let action):
                     switch action {
                     case .external(let action):
@@ -49,20 +53,24 @@ extension LearningToDoFormReducer {
                             state.subjectList.append(newSubject)
                             return .send(.addSubjectAction(.dismiss))
                         }
+                    
                     default:
                         return .none
                     }
                 }
+            
             case .alertAction(let action):
                 switch action {
                 case .dismiss:
                     state.alertState = nil
                     return .none
+                
                 case .presented(let action):
                     switch action {
                     case .onDeleteSubject(let index):
                         state.subjectList.remove(at: index)
                         return .send(.alertAction(.dismiss))
+                    
                     default:
                         return .none
                     }
@@ -70,5 +78,4 @@ extension LearningToDoFormReducer {
             }
         }
     }
-    
 }

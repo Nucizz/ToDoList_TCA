@@ -79,9 +79,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.categoryValueField = .shopping
         }
         
-        await store.send(.view(.onCategoryFieldSelected))
-        
-        await store.receive(.internal(.handleCategoryInitiation)) {
+        await store.send(.view(.onCategoryFieldSelected)) {
             $0.shoppingToDoFormState = .init()
         }
         
@@ -91,9 +89,6 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         
         await store.send(.view(.onCategoryFieldSelected)) {
             $0.shoppingToDoFormState = nil
-        }
-        
-        await store.receive(.internal(.handleCategoryInitiation)) {
             $0.travelingToDoFormState = .init()
         }
         
@@ -103,9 +98,6 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         
         await store.send(.view(.onCategoryFieldSelected)) {
             $0.travelingToDoFormState = nil
-        }
-        
-        await store.receive(.internal(.handleCategoryInitiation)) {
             $0.learningToDoFormState = .init()
         }
         
@@ -117,7 +109,6 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.learningToDoFormState = nil
         }
         
-        await store.receive(.internal(.handleCategoryInitiation))
     }
     
     func testGeneralAddToDoButtonSuccess() async {
@@ -136,7 +127,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         }
         
         guard let mockDescription = expectedNewToDo.description else {
-            XCTFail()
+            XCTFail("Mock Description not available.")
             return
         }
         
@@ -158,7 +149,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
     func testShoppingAddToDoButtonSuccess() async {
         let expectedAnyNewToDo = getShoppingToDo()
         guard let expectedNewToDo = expectedAnyNewToDo.getValue() as? ShoppingToDo else {
-            XCTFail()
+            XCTFail("Mock To Do not available.")
             return
         }
         
@@ -174,9 +165,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.categoryValueField = expectedNewToDo.category
         }
         
-        await store.send(.view(.onCategoryFieldSelected))
-        
-        await store.receive(.internal(.handleCategoryInitiation)) {
+        await store.send(.view(.onCategoryFieldSelected)) {
             $0.shoppingToDoFormState = .init()
         }
         
@@ -202,7 +191,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         }
         
         guard let mockProductList = expectedNewToDo.productList, let mockProduct = mockProductList.first else {
-            XCTFail()
+            XCTFail("Mock Product list not available.")
             return
         }
         
@@ -224,7 +213,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
     func testTravellingAddToDoButtonSuccess() async {
         let expectedAnyNewToDo = getTravelingToDo()
         guard let expectedNewToDo = expectedAnyNewToDo.getValue() as? TravelingToDo else {
-            XCTFail()
+            XCTFail("Mock To Do not available.")
             return
         }
         
@@ -240,9 +229,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.categoryValueField = expectedNewToDo.category
         }
         
-        await store.send(.view(.onCategoryFieldSelected))
-        
-        await store.receive(.internal(.handleCategoryInitiation)) {
+        await store.send(.view(.onCategoryFieldSelected)) {
             $0.travelingToDoFormState = .init()
         }
         
@@ -251,7 +238,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         }
         
         guard let mockDescription = expectedNewToDo.description else {
-            XCTFail()
+            XCTFail("Mock Description not available.")
             return
         }
         
@@ -268,7 +255,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         }
         
         guard let mockDestinationList = expectedNewToDo.destinationList, let mockDestination = mockDestinationList.first else {
-            XCTFail()
+            XCTFail("Mock Destination list not available.")
             return
         }
         
@@ -290,7 +277,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
     func testLearningAddToDoButtonSuccess() async {
         let expectedAnyNewToDo = getLearningToDo()
         guard let expectedNewToDo = expectedAnyNewToDo.getValue() as? LearningToDo else {
-            XCTFail()
+            XCTFail("Mock To Do not available.")
             return
         }
         
@@ -306,9 +293,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.categoryValueField = expectedNewToDo.category
         }
         
-        await store.send(.view(.onCategoryFieldSelected))
-        
-        await store.receive(.internal(.handleCategoryInitiation)) {
+        await store.send(.view(.onCategoryFieldSelected)) {
             $0.learningToDoFormState = .init()
         }
         
@@ -317,7 +302,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         }
         
         guard let mockDescription = expectedNewToDo.description else {
-            XCTFail()
+            XCTFail("Mock Description not available.")
             return
         }
         
@@ -330,7 +315,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         }
         
         guard let mockSubjectList = expectedNewToDo.subjectList, let mockSubject = mockSubjectList.first else {
-            XCTFail()
+            XCTFail("Mock Subject list not available.")
             return
         }
         
@@ -384,9 +369,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.categoryValueField = .shopping
         }
         
-        await store.send(.view(.onCategoryFieldSelected))
-        
-        await store.receive(.internal(.handleCategoryInitiation)) {
+        await store.send(.view(.onCategoryFieldSelected)) {
             $0.shoppingToDoFormState = .init()
         }
         
@@ -440,9 +423,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
             $0.categoryValueField = .traveling
         }
         
-        await store.send(.view(.onCategoryFieldSelected))
-        
-        await store.receive(.internal(.handleCategoryInitiation)) {
+        await store.send(.view(.onCategoryFieldSelected)) {
             $0.travelingToDoFormState = .init()
         }
         
@@ -499,7 +480,7 @@ extension ToDoForm_AppTests { // MARK: FOR GENERAL USAGE
         }
         
         guard let mockDescription = expectedNewToDo.description else {
-            XCTFail()
+            XCTFail("Mock Description not available.")
             return
         }
         
@@ -541,7 +522,7 @@ extension ToDoForm_AppTests { // MARK: FOR EDITING USAGE
             $0.date = { DateGenerator.constant(constantDate) }()
         }
         
-        await store.send(.internal(.handleCategoryInitiation))
+        await store.send(.view(.onCategoryFieldSelected))
     }
     
     func testEditShoppingFormInitiation() async {
@@ -554,7 +535,7 @@ extension ToDoForm_AppTests { // MARK: FOR EDITING USAGE
             $0.date = { DateGenerator.constant(constantDate) }()
         }
         
-        await store.send(.internal(.handleCategoryInitiation)) {
+        await store.send(.view(.onCategoryFieldSelected)) {
             $0.shoppingToDoFormState = .init(toDo: expectedNewToDo.getValue() as? ShoppingToDo)
         }
     }
@@ -569,7 +550,7 @@ extension ToDoForm_AppTests { // MARK: FOR EDITING USAGE
             $0.date = { DateGenerator.constant(constantDate) }()
         }
         
-        await store.send(.internal(.handleCategoryInitiation)) {
+        await store.send(.view(.onCategoryFieldSelected)) {
             $0.travelingToDoFormState = .init(toDo: expectedNewToDo.getValue() as? TravelingToDo)
         }
     }
@@ -584,7 +565,7 @@ extension ToDoForm_AppTests { // MARK: FOR EDITING USAGE
             $0.date = { DateGenerator.constant(constantDate) }()
         }
         
-        await store.send(.internal(.handleCategoryInitiation)) {
+        await store.send(.view(.onCategoryFieldSelected)) {
             $0.learningToDoFormState = .init(toDo: expectedNewToDo.getValue() as? LearningToDo)
         }
     }

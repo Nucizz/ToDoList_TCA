@@ -12,24 +12,37 @@ struct TravelingToDoDetailView: View {
     let store: StoreOf<TravelingToDoDetailReducer>
     
     var body: some View {
-        WithViewStore(self.store, observe: \.toDo) { viewStore in
-            VStack {
-                VStack(alignment: .leading) {
-                    Text("Your Budget")
-                    Text(Formatter().formatCurrency(value: viewStore.budget))
-                        .font(.title2)
-                        .bold()
-                        .padding(.bottom, 15)
-                    if let destinationList = viewStore.destinationList {
-                        Text("Your Destination List")
-                        ForEach(destinationList, id: \.self) { destination in
-                            DestinationRowView(destination: destination)
-                        }
-                    }
+        VStack(alignment: .leading) {
+            Text("Your Budget")
+            FormattedBudgetText()
+                .padding(.bottom, 15)
+            
+            DestinationList()
+        }
+    }
+}
+
+extension TravelingToDoDetailView {
+    
+    @ViewBuilder private func FormattedBudgetText() -> some View {
+        WithViewStore(self.store, observe: \.formattedBudget) { formattedBudgetViewStore in
+            Text(formattedBudgetViewStore.state)
+                .font(.title2)
+                .bold()
+        }
+    }
+    
+    @ViewBuilder private func DestinationList() -> some View {
+        WithViewStore(self.store, observe: \.destinationList) { destinationListViewStore in
+            if let destinationList = destinationListViewStore.state {
+                Text("Your Destination List")
+                ForEach(destinationList, id: \.self) { destination in
+                    DestinationRowView(destination: destination)
                 }
             }
         }
     }
+    
 }
 
 #Preview {

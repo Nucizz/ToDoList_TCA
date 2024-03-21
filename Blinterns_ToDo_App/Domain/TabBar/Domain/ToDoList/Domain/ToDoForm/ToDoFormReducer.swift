@@ -16,13 +16,15 @@ extension ToDoFormReducer {
             switch action {
             case .binding:
                 return .none
+            
             case .view(let action):
                 switch action {
                 case .onCategoryFieldSelected:
                     state.shoppingToDoFormState = nil
                     state.travelingToDoFormState = nil
                     state.learningToDoFormState = nil
-                    return .send(.internal(.handleCategoryInitiation))
+                    return self.handleCategoryInitiation(state: &state)
+                
                 case .onAddOrEditButtonTapped:
                     if state.titleField.isEmpty {
                         state.alertState = .init(title: {
@@ -54,9 +56,10 @@ extension ToDoFormReducer {
                             )
                         )
                         return .send(.internal(.handleAddOrEdit(newGeneralToDo)))
+                    
                     case .shopping:
                         guard let shoppingForm = state.shoppingToDoFormState else {
-                            return .send(.internal(.handleCategoryInitiation))
+                            return self.handleCategoryInitiation(state: &state)
                         }
                         
                         if shoppingForm.budgetField.isEmpty {
@@ -95,9 +98,10 @@ extension ToDoFormReducer {
                             )
                         )
                         return .send(.internal(.handleAddOrEdit(newShoppingToDo)))
+                    
                     case .traveling:
                         guard let travelingForm = state.travelingToDoFormState else {
-                            return .send(.internal(.handleCategoryInitiation))
+                            return self.handleCategoryInitiation(state: &state)
                         }
                         
                         if travelingForm.budgetField.isEmpty {
@@ -137,9 +141,11 @@ extension ToDoFormReducer {
                             )
                         )
                         return .send(.internal(.handleAddOrEdit(newTravelingToDo)))
+                    
                     case .learning:     
                         guard let learningForm = state.learningToDoFormState else {
-                            return .send(.internal(.handleCategoryInitiation))
+                            
+                            return self.handleCategoryInitiation(state: &state)
                         }
                         
                         let newLearningToDo = AnyToDoModel(
@@ -157,38 +163,9 @@ extension ToDoFormReducer {
                         return .none
                     }
                 }
+            
             case .internal(let action):
                 switch action {
-                case .handleCategoryInitiation:
-                    if state.isEditing {
-                        switch state.categoryValueField {
-                        case .shopping:
-                            state.shoppingToDoFormState = .init(toDo: state.editedToDoChildValue?.getValue() as? ShoppingToDo)
-                            return .none
-                        case .traveling:
-                            state.travelingToDoFormState = .init(toDo: state.editedToDoChildValue?.getValue() as? TravelingToDo)
-                            return .none
-                        case .learning:
-                            state.learningToDoFormState = .init(toDo: state.editedToDoChildValue?.getValue() as? LearningToDo)
-                            return .none
-                        default:
-                            return .none
-                        }
-                    } else {
-                        switch state.categoryValueField {
-                        case .shopping:
-                            state.shoppingToDoFormState = .init()
-                            return .none
-                        case .traveling:
-                            state.travelingToDoFormState = .init()
-                            return .none
-                        case .learning:
-                            state.learningToDoFormState = .init()
-                            return .none
-                        default:
-                            return .none
-                        }
-                    }
                 case .handleAddOrEdit(let toDo):
                     if state.isEditing {
                         do {
@@ -224,23 +201,62 @@ extension ToDoFormReducer {
                         }
                     }
                 }
+            
             case .shoppingToDoFormAction:
                 return .none
+            
             case .travelingToDoFormAction:
                 return .none
+            
             case .learningToDoFormAction:
                 return .none
+            
             case .external:
                 return .none
+            
             case .alertAction(let action):
                 switch action {
                 case .dismiss:
                     state.alertState = nil
                     return .none
+                
                 case .presented:
                     return .none
                 }
             }
         }
     }
+    
+    func handleCategoryInitiation(state: inout State) -> EffectTask<Action> {
+        if state.isEditing {
+            switch state.categoryValueField {
+            case .shopping:
+                state.shoppingToDoFormState = .init(toDo: state.editedToDoChildValue?.getValue() as? ShoppingToDo)
+                return .none
+            case .traveling:
+                state.travelingToDoFormState = .init(toDo: state.editedToDoChildValue?.getValue() as? TravelingToDo)
+                return .none
+            case .learning:
+                state.learningToDoFormState = .init(toDo: state.editedToDoChildValue?.getValue() as? LearningToDo)
+                return .none
+            default:
+                return .none
+            }
+        } else {
+            switch state.categoryValueField {
+            case .shopping:
+                state.shoppingToDoFormState = .init()
+                return .none
+            case .traveling:
+                state.travelingToDoFormState = .init()
+                return .none
+            case .learning:
+                state.learningToDoFormState = .init()
+                return .none
+            default:
+                return .none
+            }
+        }
+    }
+    
 }

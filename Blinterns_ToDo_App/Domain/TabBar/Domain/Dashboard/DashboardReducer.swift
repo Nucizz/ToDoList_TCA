@@ -16,16 +16,17 @@ extension DashboardReducer {
             switch action {
             case .binding:
                 return .none
+            
             case .view(let action):
                 switch action {
                 case .onLogoutButtonTapped:
                     userDefaultRepository.deleteAll()
                     return .send(.external(.onLogout))
                 }
+            
             case .external:
                 return .none
             }
         }
     }
-    
 }

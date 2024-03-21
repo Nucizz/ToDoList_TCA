@@ -63,7 +63,7 @@ extension ProductFormReducer {
                     }
                     return .send(.external(.onProductAdded(newProduct)))
                 }
-            case .external(let action):
+            case .external:
                 return .none
             case .alertAction(let action):
                 switch action {

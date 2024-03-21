@@ -64,13 +64,13 @@ struct DashboardView: View {
                     VStack(alignment: .leading) {
                         
                         HStack(spacing: 10) {
-                            Text("L: \(formatter.formatTemperature(temperature: data.main.temp_min))")
+                            Text("L: \(formatter.formatTemperature(temperature: data.main.tempMin))")
                                 .font(.callout)
                                 .foregroundColor(.secondary)
-                            Text("H: \(formatter.formatTemperature(temperature: data.main.temp_max))")
+                            Text("H: \(formatter.formatTemperature(temperature: data.main.tempMax))")
                                 .font(.callout)
                                 .foregroundColor(.secondary)
-                            Text("Feels: \(formatter.formatTemperature(temperature: data.main.feels_like))")
+                            Text("Feels: \(formatter.formatTemperature(temperature: data.main.feelsLike))")
                                 .font(.callout)
                                 .foregroundColor(.secondary)
                         }

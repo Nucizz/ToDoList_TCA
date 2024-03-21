@@ -11,7 +11,13 @@ import ComposableArchitecture
 struct TravelingToDoDetailReducer: ReducerProtocol {
     
     struct State: Equatable {
-        let toDo: TravelingToDo
+        let destinationList: [Destination]?
+        let formattedBudget: String
+        
+        init(toDo: TravelingToDo) {
+            formattedBudget = Formatter().formatCurrency(value: toDo.budget)
+            destinationList = toDo.destinationList
+        }
     }
     
     enum Action: Equatable {

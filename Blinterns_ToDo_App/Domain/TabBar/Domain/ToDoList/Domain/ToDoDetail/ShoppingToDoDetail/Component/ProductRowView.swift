@@ -14,7 +14,9 @@ struct ProductRowView: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 15) {
-            if let imageUrl = product.imagePath, let image = try? fileManagerRepository.loadImage(imageUrl) {
+            if let imageUrl = product.imagePath,
+               let imageData = try? fileManagerRepository.loadImage(imageUrl),
+               let image = ImageScaler().process(imageAt: imageData, to: .init(width: 80, height: 80)) {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()

@@ -18,7 +18,7 @@ extension WeatherRepository: DependencyKey {
         return Self(
             fetchWeather: { longitude, latitude in
                 let API = APILink()
-                guard let url = URL(string: "\(API.URL_openWeather)?lat=\(latitude)&lon=\(longitude)&units=metric&appid=\(API.KEY_openWeather)") else {
+                guard let url = URL(string: "\(API.openWeatherUrl)?lat=\(latitude)&lon=\(longitude)&units=metric&appid=\(API.openWeatherKey)") else {
                     throw CsError.URLError.invalidURLError
                 }
                 

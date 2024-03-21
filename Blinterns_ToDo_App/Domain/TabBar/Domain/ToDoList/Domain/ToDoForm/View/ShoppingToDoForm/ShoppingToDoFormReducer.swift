@@ -16,11 +16,13 @@ extension ShoppingToDoFormReducer {
             switch action {
             case .binding:
                 return .none
+            
             case .view(let action):
                 switch action {
                 case .onAddProductButtonTapped:
                     state.addProductState = .init()
                     return.none
+                
                 case .productRowLongPressed(let index):
                     state.alertState = .init(title: {
                         .init("Delete product!")
@@ -36,11 +38,13 @@ extension ShoppingToDoFormReducer {
                     })
                     return .none
                 }
+            
             case .addProductAction(let action):
                 switch action {
                 case .dismiss:
                     state.addProductState = nil
                     return .none
+                
                 case .presented(let action):
                     switch action {
                     case .external(let action):
@@ -49,6 +53,7 @@ extension ShoppingToDoFormReducer {
                             state.productList.append(newProduct)
                             return .send(.addProductAction(.dismiss))
                         }
+                    
                     default:
                         return .none
                     }
@@ -59,11 +64,16 @@ extension ShoppingToDoFormReducer {
                 case .dismiss:
                     state.alertState = nil
                     return .none
+                
                 case .presented(let action):
                     switch action {
                     case .onDeleteProduct(let index):
+                        try? fileManagerRepository.deleteImage(
+                            state.productList[index].name
+                        )
                         state.productList.remove(at: index)
                         return .send(.alertAction(.dismiss))
+                    
                     default:
                         return .none
                     }
@@ -71,5 +81,4 @@ extension ShoppingToDoFormReducer {
             }
         }
     }
-    
 }

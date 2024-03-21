@@ -11,7 +11,11 @@ import ComposableArchitecture
 struct LearningToDoDetailReducer: ReducerProtocol {
     
     struct State: Equatable {
-        let toDo: LearningToDo
+        let subjectList: [Subject]?
+        
+        init(toDo: LearningToDo) {
+            subjectList = toDo.subjectList
+        }
     }
      
     enum Action: Equatable {

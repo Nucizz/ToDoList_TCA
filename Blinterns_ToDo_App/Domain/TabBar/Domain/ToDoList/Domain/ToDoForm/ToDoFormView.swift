@@ -65,7 +65,7 @@ struct ToDoFormView: View {
             )
         )
         .onAppear {
-            store.send(.internal(.handleCategoryInitiation))
+            store.send(.view(.onCategoryFieldSelected))
         }
     }
 }

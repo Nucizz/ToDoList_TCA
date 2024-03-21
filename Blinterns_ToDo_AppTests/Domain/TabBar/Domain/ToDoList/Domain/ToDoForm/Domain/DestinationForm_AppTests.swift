@@ -41,7 +41,7 @@ extension DestinationForm_AppTests {
         }
         
         guard let mockAddress = mockDestinationWCords.address else {
-            XCTFail()
+            XCTFail("Mock Address not available.")
             return
         }
         
@@ -88,7 +88,7 @@ extension DestinationForm_AppTests {
         }
         
         guard let mockAddress = mockDestinationWCords.address else {
-            XCTFail()
+            XCTFail("Mock Address not available.")
             return
         }
         
