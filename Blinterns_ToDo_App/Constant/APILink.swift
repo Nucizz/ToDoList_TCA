@@ -9,7 +9,7 @@ import Foundation
 
 struct APILink {
     
-    let openWeatherKey = "c9c975769bc0e87b28971dbed026b632"
+    let openWeatherKey = "" // Add your OpenWeatherMap key here locally. Do not commit it.
     let openWeatherUrl = "https://api.openweathermap.org/data/2.5/weather"
         
 }
